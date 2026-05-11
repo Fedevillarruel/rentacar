@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ride &amp; Go – Premium Car Rental Miami</title>
+  <meta name="description" content="Miami's #1 car rental. Free delivery to your hotel, airport or Airbnb. Book in seconds via WhatsApp. No hidden fees."/>
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+  :root{
+    --red:#e63946; --red-dark:#c1121f; --red-glow:rgba(230,57,70,.08);
+    --bg:#ffffff; --bg2:#f7f7f7; --bg3:#f0f0f0; --bg4:#e8e8e8;
+    --border:rgba(0,0,0,.09); --text:#0d0d0d; --muted:#555; --muted2:#888;
+    --gold:#f4a800; --green:#25d366; --r:14px; --r-sm:8px;
+    --sh:0 4px 24px rgba(0,0,0,.08); --sh-red:0 8px 28px rgba(230,57,70,.3);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--red);color:#fff;}
+  ::-webkit-scrollbar{width:5px;}
+  ::-webkit-scrollbar-track{background:#f0f0f0;}
+  ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:#fff;}
+  nav.scrolled{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(0,0,0,.07);}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:-1.5px;display:flex;align-items:center;gap:8px;}
+  .logo-img{height:40px;width:auto;display:block;}
+  .logo em{color:var(--red);font-style:normal;}
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+  .nav-links>li>a{font-size:.88rem;font-weight:500;color:var(--muted);transition:.2s;}
+  .nav-links>li>a:hover{color:var(--text);}
+  .nav-sep{width:1px;height:20px;background:var(--border);}
+  .lang-wrap{display:flex;gap:4px;}
+  .lang-btn{background:none;border:1px solid transparent;color:var(--muted);border-radius:6px;padding:5px 10px;font-size:.77rem;font-family:inherit;cursor:pointer;font-weight:700;transition:.2s;}
+  .lang-btn.active{border-color:var(--red);color:var(--red);background:var(--red-glow);}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:10px 22px;border-radius:var(--r-sm);font-weight:700;font-size:.85rem;box-shadow:var(--sh-red),0 0 0 2px #fff,0 0 14px rgba(230,57,70,.45);transition:.2s;}
+  .nav-cta:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:var(--sh-red),0 0 0 2px #fff,0 0 22px rgba(230,57,70,.65);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+  .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;transition:.3s;}
+  .mob-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;padding:24px 6%;flex-direction:column;gap:4px;z-index:999;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+  .mob-menu.open{display:flex;}
+  .mob-menu a{font-size:.95rem;font-weight:600;padding:12px 0;border-bottom:1px solid var(--border);color:var(--muted);}
+  .mob-lang{display:flex;gap:8px;padding:12px 0;border-bottom:1px solid var(--border);}
+  .mob-cta{margin-top:8px;background:var(--red);color:#fff !important;text-align:center;padding:13px;border-radius:var(--r-sm);font-weight:700;border:none;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:100px 6% 80px;position:relative;overflow:hidden;background:var(--bg);}
+  .hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1900&h=1100&fit=crop&crop=center') center/cover no-repeat;pointer-events:none;}
+  .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,12,16,.93) 0%,rgba(9,12,16,.7) 50%,rgba(9,12,16,.4) 100%);}
+  .hero-inner{max-width:1260px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center;position:relative;z-index:1;}
+  .eyebrow{display:none;}
+  .hero-label{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+  .hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.6rem,6.5vw,5.2rem);font-weight:900;line-height:.97;margin-bottom:24px;letter-spacing:-3px;color:#fff;}
+  .hero h1 .accent{color:var(--red);}
+  .hero-sub{font-size:1rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:28px;max-width:460px;font-weight:400;}
+  .hero-list{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:7px;}
+  .hero-list li{font-size:.9rem;color:rgba(255,255,255,.7);font-weight:500;}
+  .pills{display:none;}
+  .hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px;}
+  .btn-red{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:14px 28px;border-radius:var(--r-sm);font-weight:700;font-size:.95rem;box-shadow:var(--sh-red);transition:.25s;border:none;cursor:pointer;}
+  .btn-red:hover{background:var(--red-dark);transform:translateY(-2px);}
+  .btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:13px 24px;border-radius:var(--r-sm);font-weight:600;font-size:.95rem;transition:.25s;background:rgba(255,255,255,.05);}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+  .hero-rating{font-size:.82rem;color:rgba(255,255,255,.4);letter-spacing:.3px;}
+  .hero-rating span{color:rgba(255,255,255,.55);}
+  .hero-rating{display:none;}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:26px;}
+  .t-avs{display:flex;}
+  .t-avs img{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.15);object-fit:cover;margin-left:-10px;}
+  .t-avs img:first-child{margin-left:0;}
+  .t-text{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.4;}
+  .t-text strong{color:#fff;}
+  .t-stars{color:var(--gold);font-size:.75rem;letter-spacing:2px;margin-bottom:3px;}
+
+  /* FORM CARD */
+  .qcard{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;box-shadow:var(--sh);position:relative;overflow:hidden;}
+  .qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#ff7c84);}
+  .qcard h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px;color:#0d0d0d;}
+  .qcard p{font-size:.82rem;color:var(--muted);margin-bottom:24px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;}
+  .frow.solo{grid-template-columns:1fr;}
+  .fg{display:flex;flex-direction:column;gap:5px;}
+  .fg label{font-size:.71rem;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:5px;}
+  .fg label i{color:var(--red);font-size:.63rem;}
+  .fg select,.fg input{background:#f7f7f7;border:1px solid #e0e0e0;color:#0d0d0d;padding:11px 14px;border-radius:var(--r-sm);font-size:.88rem;font-family:inherit;outline:none;transition:.2s;-webkit-appearance:none;appearance:none;}
+  .fg select:focus,.fg input:focus{border-color:var(--red);background:#fff;}
+  .fg input[type=date]::-webkit-calendar-picker-indicator{filter:none;opacity:.5;}
+  .btn-search{width:100%;margin-top:4px;background:var(--red);color:#fff;border:none;padding:14px;border-radius:var(--r-sm);font-size:.93rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:.25s;box-shadow:var(--sh-red);}
+  .btn-search:hover{background:var(--red-dark);}
+  .fsecure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:11px;font-size:.73rem;color:var(--muted2);}
+  .fsecure i{color:var(--red);font-size:.68rem;}
+
+  /* BRANDS */
+  .brands{background:#f7f7f7;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 6%;}
+  .brands-inner{max-width:1260px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .bl{font-size:.7rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+  .bi{display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+  .bi span{font-size:.82rem;font-weight:800;color:#ccc;letter-spacing:.5px;opacity:.7;transition:.2s;}
+  .bi span:hover{opacity:1;color:#0d0d0d;}
+
+  /* METRICS */
+  .metrics{background:#fff;padding:80px 6%;}
+  .metrics-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+  .mbox{padding:40px 24px;text-align:center;background:#f7f7f7;border:1px solid var(--border);transition:.3s;}
+  .mbox:first-child{border-radius:var(--r) 0 0 var(--r);}
+  .mbox:last-child{border-radius:0 var(--r) var(--r) 0;}
+  .mbox:hover{background:#fff;border-color:rgba(230,57,70,.3);box-shadow:0 4px 20px rgba(0,0,0,.06);}
+  .micon{width:44px;height:44px;background:var(--red-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:1rem;margin:0 auto 14px;}
+  .mnum{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.6rem;font-weight:900;color:#0d0d0d;line-height:1;margin-bottom:5px;}
+  .mlbl{font-size:.8rem;color:var(--muted);font-weight:500;}
+
+  /* RESULTS */
+  #results{display:none;padding:72px 6%;background:#f7f7f7;}
+  .res-hdr{text-align:center;margin-bottom:40px;}
+  .res-hdr h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;margin-bottom:8px;color:#0d0d0d;}
+  .res-hdr p{font-size:.9rem;color:var(--muted);}
+  .cgrid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;}
+  .ccard{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:.3s;}
+  .ccard:hover{transform:translateY(-5px);border-color:rgba(230,57,70,.3);box-shadow:0 16px 40px rgba(0,0,0,.1);}
+  .cimg{position:relative;overflow:hidden;height:185px;}
+  .cimg img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+  .ccard:hover .cimg img{transform:scale(1.05);}
+  .cbadge{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;}
+  .cbody{padding:22px;}
+  .cname{font-size:1rem;font-weight:700;margin-bottom:3px;color:#0d0d0d;}
+  .cmodel{font-size:.77rem;color:var(--muted);margin-bottom:14px;}
+  .cspecs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:15px;border-bottom:1px solid var(--border);}
+  .spec{display:flex;align-items:center;gap:5px;font-size:.74rem;color:var(--muted);}
+  .spec i{color:var(--red);font-size:.68rem;}
+  .cbot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .cprice .price{font-size:1.65rem;font-weight:900;color:var(--red);font-family:'Plus Jakarta Sans',sans-serif;line-height:1;}
+  .cprice .per{font-size:.71rem;color:var(--muted);}
+  .btn-wa{display:flex;align-items:center;gap:7px;background:#25d366;color:#fff;padding:10px 17px;border-radius:var(--r-sm);font-weight:700;font-size:.82rem;border:none;cursor:pointer;transition:.2s;white-space:nowrap;}
+  .btn-wa:hover{background:#1ebe59;transform:translateY(-1px);}
+
+  /* HOW */
+  .how{background:#fff;padding:96px 6%;}
+  .slabel{display:inline-flex;align-items:center;gap:8px;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:14px;}
+  .slabel::before{content:'';width:22px;height:2px;background:var(--red);border-radius:1px;}
+  .stitle{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-1.5px;margin-bottom:16px;line-height:1.1;color:#0d0d0d;}
+  .ssub{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:560px;}
+  .how-in{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:center;}
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:22px;padding:26px 0;border-bottom:1px solid var(--border);transition:.3s;}
+  .step:last-child{border-bottom:none;}
+  .step:hover .snb{background:var(--red);color:#fff;border-color:var(--red);}
+  .snb{width:48px;height:48px;flex-shrink:0;background:#f7f7f7;border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:1.1rem;font-weight:900;color:var(--red);transition:.25s;}
+  .sc h4{font-size:1rem;font-weight:700;margin-bottom:6px;color:#0d0d0d;}
+  .sc p{font-size:.87rem;color:var(--muted);line-height:1.65;}
+  .how-img{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh);position:relative;}
+  .how-img img{width:100%;height:420px;object-fit:cover;}
+  .how-badge{position:absolute;bottom:18px;left:18px;right:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:12px;padding:15px 18px;display:flex;align-items:center;gap:12px;}
+  .how-badge i{font-size:1.5rem;color:var(--green);}
+  .how-badge strong{font-size:.88rem;font-weight:700;display:block;margin-bottom:2px;color:#0d0d0d;}
+  .how-badge span{font-size:.76rem;color:var(--muted);}
+
+  /* FLEET */
+  .fleet{background:#f7f7f7;padding:96px 6%;}
+  .fleet-hdr{max-width:1260px;margin:0 auto 48px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;}
+  .fgrid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .fi{border-radius:var(--r);overflow:hidden;position:relative;height:200px;border:1px solid var(--border);transition:.3s;}
+  .fi:hover{transform:translateY(-4px);border-color:rgba(230,57,70,.4);box-shadow:0 12px 32px rgba(0,0,0,.1);}
+  .fi img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+  .fi:hover img{transform:scale(1.06);}
+  .fov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;}
+  .fov h4{font-size:.93rem;font-weight:700;margin-bottom:2px;color:#fff;}
+  .fov span{font-size:.74rem;color:rgba(255,255,255,.6);}
+  .fov .ffrom{position:absolute;top:10px;right:10px;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:20px;}
+
+  /* WHY */
+  .why{background:#fff;padding:96px 6%;}
+  .why-hdr{max-width:1260px;margin:0 auto 52px;}
+  .wgrid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .wcard{background:#f7f7f7;border:1px solid var(--border);border-radius:var(--r);padding:32px 28px;transition:.3s;position:relative;overflow:hidden;}
+  .wcard::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(230,57,70,.04) 0%,transparent 60%);opacity:0;transition:.3s;pointer-events:none;}
+  .wcard:hover{border-color:rgba(230,57,70,.35);transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.07);}
+  .wcard:hover::after{opacity:1;}
+  .wicon{width:50px;height:50px;background:var(--red-glow);border:1px solid rgba(230,57,70,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--red);margin-bottom:18px;}
+  .wcard h3{font-size:.98rem;font-weight:700;margin-bottom:9px;color:#0d0d0d;}
+  .wcard p{font-size:.86rem;color:var(--muted);line-height:1.7;}
+  .wtag{display:inline-block;margin-top:14px;font-size:.69rem;font-weight:700;color:var(--red);background:var(--red-glow);padding:3px 10px;border-radius:20px;}
+
+  /* TESTIMONIALS */
+  .testi{background:#f7f7f7;padding:96px 6%;}
+  .testi-hdr{max-width:1260px;margin:0 auto 52px;}
+  .tgrid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .tcard{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:.3s;}
+  .tcard:hover{border-color:rgba(230,57,70,.25);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.07);}
+  .tstars{display:flex;gap:2px;margin-bottom:14px;}
+  .tstars i{color:var(--gold);font-size:.83rem;}
+  .ttext{font-size:.89rem;color:var(--muted);line-height:1.75;margin-bottom:20px;font-style:italic;border-left:3px solid rgba(230,57,70,.2);padding-left:13px;}
+  .tauthor{display:flex;align-items:center;gap:12px;}
+  .tav{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--border);}
+  .tname{font-weight:700;font-size:.87rem;margin-bottom:1px;color:#0d0d0d;}
+  .tloc{font-size:.73rem;color:var(--muted);}
+  .tplat{display:flex;align-items:center;gap:3px;font-size:.69rem;color:var(--muted2);margin-top:2px;}
+  .tplat i{color:#4285f4;}
+
+  /* AREAS */
+  .areas{background:#fff;padding:80px 6%;}
+  .areas-in{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+  .alist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px;}
+  .achip{display:flex;align-items:center;gap:8px;background:#f7f7f7;border:1px solid var(--border);border-radius:var(--r-sm);padding:11px 14px;font-size:.84rem;font-weight:600;transition:.2s;color:#0d0d0d;}
+  .achip:hover{border-color:var(--red);color:var(--red);}
+  .achip i{color:var(--red);font-size:.78rem;}
+  .amap{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);height:380px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;}
+  .amap-ph{text-align:center;color:var(--muted);padding:30px;}
+  .amap-ph i{font-size:3rem;color:var(--red);margin-bottom:14px;display:block;}
+  .amap-ph p{font-size:.9rem;margin-bottom:20px;line-height:1.6;}
+
+  /* FAQ */
+  .faq{background:#f7f7f7;padding:96px 6%;}
+  .faq-in{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+  .faq-side-box{margin-top:36px;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:28px;}
+  .faq-side-box h4{font-size:.93rem;font-weight:700;margin-bottom:8px;color:#0d0d0d;}
+  .faq-side-box p{font-size:.84rem;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+  .flist{display:flex;flex-direction:column;gap:9px;}
+  .fitem{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:.2s;}
+  .fitem.fopen{border-color:rgba(230,57,70,.3);}
+  .fq{width:100%;background:none;border:none;color:#0d0d0d;font-family:inherit;font-size:.91rem;font-weight:600;padding:19px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:14px;}
+  .fq .fic{width:26px;height:26px;flex-shrink:0;background:var(--red-glow);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+  .fq .fic i{color:var(--red);font-size:.68rem;transition:.3s;}
+  .fq.fqopen .fic i{transform:rotate(180deg);}
+  .fa{display:none;padding:0 22px 18px;font-size:.87rem;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);padding-top:14px;}
+  .fa.faopen{display:block;}
+
+  /* CTA */
+  .cta-sec{padding:100px 6%;position:relative;overflow:hidden;background:var(--red);text-align:center;}
+  .cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(255,255,255,.07) 0%,transparent 70%);pointer-events:none;}
+  .cta-in{max-width:700px;margin:0 auto;position:relative;}
+  .cta-in h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:18px;color:#fff;}
+  .cta-in h2 em{color:#fff;font-style:normal;opacity:.85;}
+  .cta-in p{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:40px;line-height:1.75;}
+  .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-wa-big{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#0d0d0d;padding:16px 34px;border-radius:var(--r-sm);font-weight:800;font-size:1rem;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:.25s;}
+  .btn-wa-big:hover{background:#f0f0f0;transform:translateY(-3px);}
+  .btn-wa-big i{color:#25d366;font-size:1.2rem;}
+  .btn-phone{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.35);color:#fff;padding:15px 28px;border-radius:var(--r-sm);font-weight:700;font-size:1rem;transition:.25s;}
+  .btn-phone:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+  .cta-note{margin-top:22px;font-size:.77rem;color:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;gap:6px;}
+  .cta-note i{color:rgba(255,255,255,.7);}
+
+  /* FOOTER */
+  footer{background:#0d0d0d;border-top:none;padding:72px 6% 32px;}
+  .fgrid{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px;}
+  .fbrand .logo{font-size:1.4rem;margin-bottom:14px;}
+  .fdesc{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:22px;max-width:280px;}
+  .fsocial{display:flex;gap:9px;}
+  .sbtn{width:37px;height:37px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:.85rem;transition:.2s;}
+  .sbtn:hover{background:var(--red);border-color:var(--red);color:#fff;}
+  .fcol h5{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:18px;}
+  .fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .fcol ul li a{font-size:.85rem;color:rgba(255,255,255,.45);transition:.2s;}
+  .fcol ul li a:hover{color:#fff;}
+  .fcontact li{display:flex;align-items:flex-start;gap:9px;font-size:.84rem;color:rgba(255,255,255,.45);}
+  .fcontact li i{color:var(--red);margin-top:2px;flex-shrink:0;width:14px;}
+  .fbot{max-width:1260px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.07);padding-top:26px;flex-wrap:wrap;gap:12px;}
+  .fbot p,.fbot a{font-size:.79rem;color:rgba(255,255,255,.3);}
+  .fbot a:hover{color:rgba(255,255,255,.7);}
+  .fbot-links{display:flex;gap:18px;}
+  .fbadge{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);padding:7px 14px;font-size:.73rem;font-weight:600;color:rgba(255,255,255,.4);}
+  .fbadge i{color:var(--green);}
+
+  /* WA FLOAT */
+  .wa-float{position:fixed;bottom:26px;right:26px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:9px;}
+  .wa-tip{background:#fff;border:1px solid var(--border);border-radius:var(--r-sm);padding:7px 13px;font-size:.76rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.1);white-space:nowrap;color:#0d0d0d;animation:tip 3s ease-in-out infinite;}
+  @keyframes tip{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .wa-circ{width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.5);transition:.2s;animation:wpulse 2.5s ease-in-out infinite;}
+  .wa-circ:hover{transform:scale(1.1);}
+  @keyframes wpulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4);}50%{box-shadow:0 4px 40px rgba(37,211,102,.75),0 0 0 10px rgba(37,211,102,.08);}}
+
+  /* ANIM */
+  [data-anim]{opacity:0;transition:opacity .65s ease,transform .65s ease;}
+  [data-anim="up"]{transform:translateY(34px);}
+  [data-anim="left"]{transform:translateX(-34px);}
+  [data-anim="right"]{transform:translateX(34px);}
+  [data-anim="zoom"]{transform:scale(.9);}
+  [data-anim].in{opacity:1;transform:none;}
+  [data-d="1"]{transition-delay:.1s;}[data-d="2"]{transition-delay:.2s;}
+  [data-d="3"]{transition-delay:.3s;}[data-d="4"]{transition-delay:.4s;}
+  [data-d="5"]{transition-delay:.5s;}[data-d="6"]{transition-delay:.6s;}
+
+  /* RESPONSIVE */
+  @media(max-width:1100px){
+    .hero-inner{grid-template-columns:1fr;}
+    .qcard{max-width:540px;}
+    .fgrid-footer,.fgrid{grid-template-columns:1fr 1fr;gap:36px;}
+    .how-in{grid-template-columns:1fr;}
+    .faq-in{grid-template-columns:1fr;}
+    .areas-in{grid-template-columns:1fr;}
+    .fgrid-f{grid-template-columns:1fr 1fr !important;}
+  }
+  @media(max-width:900px){
+    .metrics-inner{grid-template-columns:1fr 1fr;}
+    .mbox:nth-child(1){border-radius:var(--r) 0 0 0;}
+    .mbox:nth-child(2){border-radius:0 var(--r) 0 0;}
+    .mbox:nth-child(3){border-radius:0 0 0 var(--r);}
+    .mbox:nth-child(4){border-radius:0 0 var(--r) 0;}
+    .wgrid{grid-template-columns:1fr 1fr;}
+    .tgrid{grid-template-columns:1fr 1fr;}
+    .fgrid-fleet{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+  }
+  @media(max-width:600px){
+    .frow{grid-template-columns:1fr;}
+    .wgrid,.tgrid{grid-template-columns:1fr;}
+    .fgrid-fleet,.fgrid{grid-template-columns:1fr 1fr;}
+    .alist{grid-template-columns:1fr 1fr;}
+    .hero-btns{flex-direction:column;}
+    .cta-btns{flex-direction:column;align-items:center;}
+    .bi{gap:16px;}
+    .metrics-inner{grid-template-columns:1fr 1fr;}
+    nav,section,.how,.fleet,.why,.testi,.areas,.faq,.cta-sec,.brands,.metrics{padding-left:4% !important;padding-right:4% !important;}
+  }
+  /* COOKIE BANNER */
+  #cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 20px 20px;pointer-events:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;}
+  #cookieBanner.cookieShow{opacity:1;transform:translateY(0);pointer-events:auto;}
+  #cookieBanner.cookieHide{opacity:0;transform:translateY(20px);pointer-events:none;}
+  #cookieInner{max-width:900px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:0 8px 40px rgba(0,0,0,.13);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  #cookieText{display:flex;align-items:flex-start;gap:14px;flex:1;min-width:0;}
+  #cookieIcon{font-size:1.6rem;flex-shrink:0;line-height:1;}
+  #cookieText div{flex:1;}
+  #cookieTitle{font-size:.92rem;font-weight:700;color:var(--text);display:block;margin-bottom:3px;}
+  #cookieDesc{font-size:.8rem;color:var(--muted);line-height:1.55;margin:0;}
+  #cookieBtns{display:flex;gap:10px;flex-shrink:0;}
+  #cookieDecline{background:none;border:1.5px solid var(--border);color:var(--muted);padding:9px 18px;border-radius:var(--r-sm);font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;transition:.2s;}
+  #cookieDecline:hover{border-color:#999;color:var(--text);}
+  #cookieAccept{background:var(--red);color:#fff;border:none;padding:9px 20px;border-radius:var(--r-sm);font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:var(--sh-red);transition:.2s;}
+  #cookieAccept:hover{background:var(--red-dark);}
+  @media(max-width:600px){#cookieInner{flex-direction:column;}#cookieBtns{width:100%;}#cookieDecline,#cookieAccept{flex:1;text-align:center;}}
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <img src="logo.png" alt="Ride & Go" class="logo-img"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how" data-i18n="nav_how">How It Works</a></li>
+    <li><a href="#fleet" data-i18n="nav_fleet">Fleet</a></li>
+    <li><a href="#why" data-i18n="nav_why">Why Us</a></li>
+    <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+    <li class="nav-sep"></li>
+    <li>
+      <div class="lang-wrap">
+        <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
+    <li><a href="https://wa.me/17867282882?text=Hi" class="nav-cta wa-link"><i class="fab fa-whatsapp"></i> <span data-i18n="nav_cta">Book Now</span></a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-lang">
+    <button class="lang-btn active" id="btnEN2" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnES2" onclick="setLang('es')">ES</button>
+  </div>
+  <a href="#how" onclick="toggleMenu()" data-i18n="nav_how">How It Works</a>
+  <a href="#fleet" onclick="toggleMenu()" data-i18n="nav_fleet">Fleet</a>
+  <a href="#why" onclick="toggleMenu()" data-i18n="nav_why">Why Us</a>
+  <a href="#faq" onclick="toggleMenu()" data-i18n="nav_faq">FAQ</a>
+  <a href="https://wa.me/17867282882?text=Hi" class="mob-cta wa-link"><i class="fab fa-whatsapp"></i> <span data-i18n="nav_cta">Book Now</span></a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-photo"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-label">Miami Car Rental &mdash; Entrega a domicilio</p>
+      <h1>
+        <span data-i18n="h1a">Rent a car</span><br/>
+        <span data-i18n="h1b">in Miami today.</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hsub">We drop it off at your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no forms, no waiting in line.</p>
+      <ul class="hero-list">
+        <li><span data-i18n="p1">✓ Free delivery anywhere in Miami-Dade</span></li>
+        <li><span data-i18n="p2">✓ Full insurance always included</span></li>
+        <li><span data-i18n="p3">✓ Confirmed in under 5 minutes</span></li>
+      </ul>
+      <div class="hero-btns">
+        <a href="https://wa.me/17867282882?text=Hi" class="btn-red wa-link"><i class="fab fa-whatsapp"></i><span data-i18n="hcta1">Book on WhatsApp</span></a>
+        <a href="tel:+17867282882" class="btn-ghost"><i class="fa-solid fa-phone"></i><span>786-728-2882</span></a>
+      </div>
+      <div class="hero-trust">
+        <div class="t-avs">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=68&h=68&fit=crop&crop=face" alt=""/>
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=68&h=68&fit=crop&crop=face" alt=""/>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=68&h=68&fit=crop&crop=face" alt=""/>
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=68&h=68&fit=crop&crop=face" alt=""/>
+        </div>
+        <div>
+          <div class="t-stars">★★★★★ <span style="color:var(--gold);font-size:.78rem;">4.9</span></div>
+          <div class="t-text"><strong data-i18n="tnum">4,800+</strong> <span data-i18n="tlbl">happy customers this year</span></div>
+        </div>
+      </div>
+    </div>
+    <div data-anim="left">
+      <div class="qcard">
+        <h3 data-i18n="ftitle">Get an Instant Quote</h3>
+        <p data-i18n="fsub">Find your perfect car in seconds</p>
+        <div class="frow">
+          <div class="fg">
+            <label><i class="fa-solid fa-location-dot"></i><span data-i18n="llp">Pickup</span></label>
+            <select id="fPickup">
+              <option>✈ Miami Airport (MIA)</option>
+              <option>✈ Fort Lauderdale (FLL)</option>
+              <option>✈ Opa-locka (OPF)</option>
+              <option>📍 Brickell</option>
+              <option>📍 South Beach</option>
+              <option>📍 Doral</option>
+              <option data-i18n="ohotel">📍 My Hotel / Address</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label><i class="fa-solid fa-car"></i><span data-i18n="llt">Vehicle Type</span></label>
+            <select id="fType">
+              <option value="compact" data-i18n="ocompact">Compact – from $45/day</option>
+              <option value="suv">SUV – from $79/day</option>
+              <option value="luxury" data-i18n="oluxury">Luxury – from $129/day</option>
+              <option value="minivan" data-i18n="ominivan">Minivan – from $95/day</option>
+              <option value="electric" data-i18n="oelectric">Electric – from $89/day</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label><i class="fa-solid fa-calendar"></i><span data-i18n="llf">Pick-up Date</span></label>
+            <input type="date" id="fFrom"/>
+          </div>
+          <div class="fg">
+            <label><i class="fa-solid fa-calendar-check"></i><span data-i18n="llt2">Return Date</span></label>
+            <input type="date" id="fTo"/>
+          </div>
+        </div>
+        <div class="frow solo">
+          <div class="fg">
+            <label><i class="fa-solid fa-user"></i><span data-i18n="lld">Additional Drivers</span></label>
+            <select id="fDrivers">
+              <option data-i18n="od1">1 Driver (included)</option>
+              <option data-i18n="od2">2 Drivers (+$10/day)</option>
+              <option data-i18n="od3">3+ Drivers (+$15/day)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-search" onclick="showResults()">
+          <i class="fa-solid fa-magnifying-glass"></i><span data-i18n="bsearch">Search Available Cars</span>
+        </button>
+        <div class="fsecure"><i class="fa-solid fa-lock"></i><span data-i18n="fsec">Secure · No credit card required · Free cancellation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands">
+  <div class="brands-inner">
+    <span class="bl" data-i18n="blbl">Our Fleet Includes</span>
+    <div class="bi">
+      <span>TOYOTA</span><span>HONDA</span><span>BMW</span>
+      <span>MERCEDES</span><span>FORD</span><span>TESLA</span><span>CHRYSLER</span>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="metrics-inner">
+    <div class="mbox" data-anim="up">
+      <div class="micon"><i class="fa-solid fa-users"></i></div>
+      <div class="mnum" data-count="4800">0</div>
+      <div class="mlbl" data-i18n="m1">Happy Customers</div>
+    </div>
+    <div class="mbox" data-anim="up" data-d="2">
+      <div class="micon"><i class="fa-solid fa-star"></i></div>
+      <div class="mnum" style="color:var(--gold)">4.9★</div>
+      <div class="mlbl" data-i18n="m2">Google Rating</div>
+    </div>
+    <div class="mbox" data-anim="up" data-d="3">
+      <div class="micon"><i class="fa-solid fa-car"></i></div>
+      <div class="mnum" data-count="65">0</div>
+      <div class="mlbl" data-i18n="m3">Vehicles in Fleet</div>
+    </div>
+    <div class="mbox" data-anim="up" data-d="4">
+      <div class="micon"><i class="fa-solid fa-award"></i></div>
+      <div class="mnum" data-count="7">0</div>
+      <div class="mlbl" data-i18n="m4">Years Serving Miami</div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="res-hdr">
+    <h2 data-i18n="rtitle">Available Vehicles</h2>
+    <p data-i18n="rsub">Tap "Book" to reserve instantly via WhatsApp</p>
+  </div>
+  <div class="cgrid" id="carsGrid"></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-in">
+    <div data-anim="right">
+      <span class="slabel" data-i18n="howtag">How It Works</span>
+      <h2 class="stitle" data-i18n="howtitle">Rent in Miami<br/>in 3 Simple Steps</h2>
+      <p class="ssub" data-i18n="howsub">No paperwork headaches. No long queues. Just message us and drive.</p>
+    </div>
+    <div class="steps" data-anim="left">
+      <div class="step">
+        <div class="snb">01</div>
+        <div class="sc">
+          <h4 data-i18n="s1t">Pick Your Vehicle</h4>
+          <p data-i18n="s1d">Browse our fleet or tell us what you need on WhatsApp. Compact, SUV, luxury, electric — all at transparent daily rates.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="snb">02</div>
+        <div class="sc">
+          <h4 data-i18n="s2t">Confirm in Minutes</h4>
+          <p data-i18n="s2d">Message us with your dates and pickup location. Our team responds in under 5 minutes with your confirmed reservation.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="snb">03</div>
+        <div class="sc">
+          <h4 data-i18n="s3t">We Deliver, You Drive</h4>
+          <p data-i18n="s3d">We bring the car to your hotel, Airbnb, or airport terminal. No shuttle, no extra stops — just keys in hand and the open road.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="fleet-hdr">
+    <div>
+      <span class="slabel" data-i18n="flttag">Our Fleet</span>
+      <h2 class="stitle" data-i18n="flttitle">Every Car for Every Trip</h2>
+    </div>
+    <a href="https://wa.me/17867282882?text=Hi" class="btn-red wa-link"><i class="fab fa-whatsapp"></i><span data-i18n="fltcta">See Full Fleet</span></a>
+  </div>
+  <!-- 7-day promo -->
+  <div style="max-width:1260px;margin:0 auto 36px;background:linear-gradient(90deg,#0d0d0d 0%,#1a1a1a 100%);border-radius:var(--r);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-left:4px solid var(--gold);">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="font-size:1.8rem;">🎉</span>
+      <div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;" data-i18n="promo_title">Rent 7 days · Get 1 FREE</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-top:2px;" data-i18n="promo_sub">Book any vehicle for a full week and we'll add an extra day at no charge. Ask us on WhatsApp.</div>
+      </div>
+    </div>
+    <a href="https://wa.me/17867282882?text=Hi%2C+I+want+the+7-day+deal!" class="wa-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0d0d0d;padding:11px 22px;border-radius:var(--r-sm);font-weight:800;font-size:.85rem;white-space:nowrap;" data-i18n="promo_cta">Claim This Deal</a>
+  </div>
+  <div class="fgrid fgrid-fleet">
+    <div class="fi" data-anim="up" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
+      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Minivan"/>
+      <div class="fov">
+        <div class="ffrom" style="background:#f4a800;color:#000;font-weight:800;">⭐ #1 Más Rentado</div>
+        <h4 data-i18n="catmv">Minivan</h4>
+        <span>Sienna · Pacifica · 7-8 pasajeros</span>
+      </div>
+    </div>
+    <div class="fi" data-anim="up" data-d="2" style="border-color:rgba(230,57,70,.5);">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="SUV"/>
+      <div class="fov">
+        <div class="ffrom" data-i18n="fs">From $79/day</div>
+        <h4>SUV</h4>
+        <span data-i18n="seg">RAV4 · Explorer · Pilot</span>
+      </div>
+    </div>
+    <div class="fi" data-anim="up" data-d="3">
+      <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&h=400&fit=crop" alt="Compact"/>
+      <div class="fov">
+        <div class="ffrom" data-i18n="fc">From $45/day</div>
+        <h4 data-i18n="catc">Compact</h4>
+        <span data-i18n="ceg">Toyota Corolla · Honda Civic</span>
+      </div>
+    </div>
+    <div class="fi" data-anim="up" data-d="4">
+      <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&h=400&fit=crop" alt="Electric"/>
+      <div class="fov">
+        <div class="ffrom" data-i18n="fe">From $89/day</div>
+        <h4 data-i18n="cate">Electric</h4>
+        <span data-i18n="eeg">Tesla Model 3 · Model Y</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-hdr">
+    <span class="slabel" data-i18n="whytag">Why Ride &amp; Go</span>
+    <h2 class="stitle" data-i18n="whytitle">The Miami Rental<br/>Experience You Deserve</h2>
+    <p class="ssub" data-i18n="whysub">We built Ride &amp; Go because renting a car should be as easy as sending a text message.</p>
+  </div>
+  <div class="wgrid">
+    <div class="wcard" data-anim="up">
+      <div class="wicon"><i class="fa-solid fa-bolt"></i></div>
+      <h3 data-i18n="w1t">Confirmed in 5 Minutes</h3>
+      <p data-i18n="w1d">Send us a WhatsApp and our team responds immediately. No bots — a real person handles your reservation 24/7.</p>
+      <span class="wtag" data-i18n="w1g">⚡ Fastest in Miami</span>
+    </div>
+    <div class="wcard" data-anim="up" data-d="1">
+      <div class="wicon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3 data-i18n="w2t">Full Insurance Included</h3>
+      <p data-i18n="w2d">Every rental includes collision, liability, and roadside assistance. Drive completely worry-free — no surprises at checkout.</p>
+      <span class="wtag" data-i18n="w2g">✅ Zero Surprises</span>
+    </div>
+    <div class="wcard" data-anim="up" data-d="2">
+      <div class="wicon"><i class="fa-solid fa-truck-fast"></i></div>
+      <h3 data-i18n="w3t">Free Door-to-Door Delivery</h3>
+      <p data-i18n="w3d">We deliver to any address in Miami-Dade — hotels, Airbnbs, MIA, FLL, and OPF airports — at zero extra charge.</p>
+      <span class="wtag" data-i18n="w3g">🚚 All Miami-Dade</span>
+    </div>
+    <div class="wcard" data-anim="up" data-d="3">
+      <div class="wicon"><i class="fa-solid fa-tag"></i></div>
+      <h3 data-i18n="w4t">100% Transparent Pricing</h3>
+      <p data-i18n="w4d">What you see is what you pay. Taxes, insurance, and delivery are always included. No mysterious fees at pickup.</p>
+      <span class="wtag" data-i18n="w4g">💰 No Hidden Fees</span>
+    </div>
+    <div class="wcard" data-anim="up" data-d="4">
+      <div class="wicon"><i class="fa-solid fa-car-burst"></i></div>
+      <h3 data-i18n="w5t">New-Model Fleet Only</h3>
+      <p data-i18n="w5d">Every vehicle is 2022 or newer, fully sanitized and inspected before each rental. Always clean, always reliable.</p>
+      <span class="wtag" data-i18n="w5g">🏆 2022+ Models</span>
+    </div>
+    <div class="wcard" data-anim="up" data-d="5">
+      <div class="wicon"><i class="fa-solid fa-headset"></i></div>
+      <h3 data-i18n="w6t">24/7 Human Support</h3>
+      <p data-i18n="w6d">Flat tire at 2am? Fender bender on I-95? Our team is on WhatsApp around the clock. Real help, always.</p>
+      <span class="wtag" data-i18n="w6g">📞 Always Available</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="reviews">
+  <div class="testi-hdr">
+    <span class="slabel" data-i18n="rtag">Customer Reviews</span>
+    <h2 class="stitle" data-i18n="rtitle2">Don't Take Our Word for It</h2>
+    <p class="ssub" data-i18n="rsub2">Over 4,800 customers have rented with us. Here's what a few of them say.</p>
+  </div>
+  <div class="tgrid">
+    <div class="tcard" data-anim="up">
+      <div class="tstars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p class="ttext" data-i18n="r1">"I messaged at 10pm and had a confirmed Tesla delivered to my Brickell hotel by 9am. Spotless car, zero hassle. This is how car rental should work."</p>
+      <div class="tauthor">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=88&h=88&fit=crop&crop=face" class="tav" alt=""/>
+        <div>
+          <div class="tname">James R.</div>
+          <div class="tloc">New York, NY</div>
+          <div class="tplat"><i class="fab fa-google"></i> Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard" data-anim="up" data-d="2">
+      <div class="tstars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p class="ttext" data-i18n="r2">"Rented an Explorer for a week-long Keys road trip with the whole family. Great price and they picked it up from our hotel when we left. 100% will use again."</p>
+      <div class="tauthor">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&h=88&fit=crop&crop=face" class="tav" alt=""/>
+        <div>
+          <div class="tname">Maria G.</div>
+          <div class="tloc">Chicago, IL</div>
+          <div class="tplat"><i class="fab fa-google"></i> Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard" data-anim="up" data-d="4">
+      <div class="tstars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p class="ttext" data-i18n="r3">"BMW 5-series for a business trip. Immaculate condition. The driver was at MIA before I even got my luggage. Best rental experience I've ever had, period."</p>
+      <div class="tauthor">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&fit=crop&crop=face" class="tav" alt=""/>
+        <div>
+          <div class="tname">Carlos M.</div>
+          <div class="tloc">Miami, FL</div>
+          <div class="tplat"><i class="fab fa-google"></i> Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="areas" id="areas">
+  <div class="areas-in">
+    <div data-anim="right">
+      <span class="slabel" data-i18n="atag">Service Area</span>
+      <h2 class="stitle" data-i18n="atitle">We Cover All of Miami</h2>
+      <p class="ssub" data-i18n="asub">Whether you land at MIA or stay in Wynwood, we'll have your car waiting. Free delivery to every major neighborhood and all three airports.</p>
+      <div class="alist">
+        <div class="achip"><i class="fa-solid fa-plane-arrival"></i> Miami Airport (MIA)</div>
+        <div class="achip"><i class="fa-solid fa-plane-arrival"></i> Fort Lauderdale (FLL)</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> South Beach</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Brickell</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Wynwood</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Coral Gables</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Doral</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Aventura</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Coconut Grove</div>
+        <div class="achip"><i class="fa-solid fa-location-dot"></i> Miami Beach</div>
+      </div>
+    </div>
+    <div data-anim="left">
+      <div class="amap" style="height:380px;padding:0;overflow:hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3587.0304253730906!2d-80.162819!3d25.967042499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9ac6a8c89c9e5%3A0x4441610b8cd84487!2s1950%20NE%20207th%20St%2C%20Miami%2C%20FL%2033179%2C%20EE.%20UU.!5e0!3m2!1ses-419!2sar!4v1776794103767!5m2!1ses-419!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-in">
+    <div data-anim="right">
+      <span class="slabel">FAQ</span>
+      <h2 class="stitle" data-i18n="faqtitle">Questions?<br/>We've Got Answers</h2>
+      <p class="ssub" data-i18n="faqsub">Everything you need to know before booking your Miami rental.</p>
+      <div class="faq-side-box">
+        <h4 data-i18n="faqstill">Still have questions?</h4>
+        <p data-i18n="faqcp">Our team is on WhatsApp 24/7. A real person answers in minutes — no bots.</p>
+        <a href="https://wa.me/17867282882?text=I+have+a+question" class="btn-red wa-link"><i class="fab fa-whatsapp"></i><span data-i18n="faqcta">Chat with Us</span></a>
+      </div>
+    </div>
+    <div class="flist" data-anim="left">
+      <div class="fitem">
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q1">Do you deliver to the airport?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a1">Yes! We deliver directly to MIA, FLL, and OPF at no extra charge. Just share your flight number and arrival time — we'll be waiting when you land, car fueled and ready.</div>
+      </div>
+      <div class="fitem">
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q2">Is insurance included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a2">Absolutely. Every rental includes basic liability and collision coverage at no extra cost. We believe you should know exactly what you're paying for before you sign anything — no hidden add-ons at pickup.</div>
+      </div>
+      <div class="fitem">
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q3">Can I pay with cash?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a3">Yes, we accept cash (USD), Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days after the car is returned.</div>
+      </div>
+      <div class="fitem">
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q4">Will someone assist us during our stay?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a4">Always. Our team is available 24/7 via WhatsApp for the entire duration of your rental — whether it's a question about the car, a flat tire at 2am, or anything in between. You'll never be alone on the road.</div>
+      </div>
+      <div class="fitem">
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q5">Are tolls and mileage included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a5">Mileage is unlimited — drive as much as you want with no per-mile charges. Tolls are not included; you'll need a SunPass or pay cash at toll booths. We can help you set up a SunPass transponder if needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-sec">
+  <div class="cta-in" data-anim="zoom">
+    <h2><span data-i18n="ctah1">Ready to Hit</span> <em data-i18n="ctah2">Miami's Roads?</em></h2>
+    <p data-i18n="ctap">Join 4,800+ travelers who chose Ride &amp; Go. Message us on WhatsApp right now — your car will be confirmed in minutes.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/17867282882?text=Hi" class="btn-wa-big wa-link"><i class="fab fa-whatsapp" style="font-size:1.3rem"></i><span data-i18n="ctawa">Book on WhatsApp Now</span></a>
+      <a href="tel:+17867282882" class="btn-phone"><i class="fa-solid fa-phone"></i><span>786-728-2882</span></a>
+    </div>
+    <p class="cta-note"><i class="fa-solid fa-clock"></i><span data-i18n="ctanote">Average response time: under 4 minutes · Available 24/7</span></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid" style="display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px;max-width:1260px;margin-left:auto;margin-right:auto;">
+    <div class="fbrand">
+      <a href="#" style="margin-bottom:16px;display:inline-block;text-decoration:none;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.45rem;color:#fff;letter-spacing:-1px;line-height:1.1;">RIDE &amp; GO</div>
+        <div style="font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;">Miami Rental Car</div>
+      </a>
+      <p class="fdesc" data-i18n="fdesc">Miami's premier car rental. Premium vehicles, free delivery, full insurance — booked in seconds via WhatsApp.</p>
+      <div class="fsocial">
+        <a href="#" class="sbtn"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="sbtn"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="sbtn"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/17867282882" class="sbtn"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5 data-i18n="ff">Our Fleet</h5>
+      <ul>
+        <li><a href="#fleet" data-i18n="catc">Compact Cars</a></li>
+        <li><a href="#fleet">SUVs</a></li>
+        <li><a href="#fleet" data-i18n="catl">Luxury Cars</a></li>
+        <li><a href="#fleet" data-i18n="cate">Electric Vehicles</a></li>
+        <li><a href="#fleet">Minivans</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5 data-i18n="flinks">Quick Links</h5>
+      <ul>
+        <li><a href="#how" data-i18n="nav_how">How It Works</a></li>
+        <li><a href="#why" data-i18n="nav_why">Why Us</a></li>
+        <li><a href="#areas" data-i18n="fareas">Service Areas</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+        <li><a href="https://wa.me/17867282882?text=Hi" class="wa-link" data-i18n="nav_cta">Book Now</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5 data-i18n="fcontact">Contact</h5>
+      <ul class="fcontact" style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+        <li><i class="fab fa-whatsapp"></i> 786-728-2882</li>
+        <li><i class="fa-solid fa-envelope"></i> ride&amp;gomiamirentalcar@gmail.com</li>
+        <li><i class="fa-solid fa-location-dot"></i> 1950 NE 207th St, Miami FL 33179</li>
+        <li><i class="fa-solid fa-clock"></i><span data-i18n="fhrs">24/7 Available</span></li>
+        <li><i class="fa-solid fa-plane"></i> MIA · FLL · OPF</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>© 2026 Ride &amp; Go Miami Rental Car LLC. <span data-i18n="frights">All rights reserved.</span></p>
+    <div class="fbadge"><i class="fab fa-whatsapp"></i><span data-i18n="fbadge">Respond in under 5 min</span></div>
+    <div class="fbot-links">
+      <a href="#" data-i18n="fprivacy">Privacy Policy</a>
+      <a href="#" data-i18n="fterms">Terms of Use</a>
+    </div>
+  </div>
+  <div style="max-width:1260px;margin:18px auto 0;text-align:center;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);">
+    <a href="https://fedini.app" target="_blank" rel="noopener" style="font-size:.74rem;color:rgba(255,255,255,.28);text-decoration:none;transition:.2s;" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.28)'" data-i18n="fedini_credit">Creado con ❤️ por Fedini ©. La presencia digital que tu negocio merece.</a>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/17867282882?text=Hi" class="wa-float wa-link" target="_blank">
+  <div class="wa-tip" id="waTip" data-i18n="watip">💬 Chat with us!</div>
+  <div class="wa-circ"><i class="fab fa-whatsapp"></i></div>
+</a>
+
+<script>
+const T={
+en:{
+  nav_how:"How It Works",nav_fleet:"Fleet",nav_why:"Why Us",nav_faq:"FAQ",nav_cta:"Book Now",
+  eyebrow:"Miami Car Rental — 4.9★ on Google",
+  h1a:"Rent a car",h1b:"in Miami today.",h1c:"",
+  hsub:"We drop it off at your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no lines, no paperwork.",
+  p1:"✓ Free delivery anywhere in Miami-Dade",p2:"✓ Full insurance always included",p3:"✓ Confirmed in under 5 minutes",p4:"",
+  hcta1:"Book on WhatsApp",hcta2:"View Fleet",
+  hrating:"4.9 on Google · 4,800+ rentals",
+  tnum:"4,800+",tlbl:"happy customers this year",
+  ftitle:"Get an Instant Quote",fsub:"Find your perfect car in seconds",
+  llp:"Pickup",llt:"Vehicle Type",llf:"Pick-up Date",llt2:"Return Date",lld:"Additional Drivers",
+  ohotel:"My Hotel / Address",
+  ocompact:"Compact – from $45/day",oluxury:"Luxury – from $129/day",ominivan:"Minivan – from $95/day",oelectric:"Electric – from $89/day",
+  od1:"1 Driver (included)",od2:"2 Drivers (+$10/day)",od3:"3+ Drivers (+$15/day)",
+  bsearch:"Search Available Cars",fsec:"Secure · No credit card required · Free cancellation",
+  blbl:"Our Fleet Includes",
+  m1:"Happy Customers",m2:"Google Rating",m3:"Vehicles in Fleet",m4:"Years Serving Miami",
+  rtitle:"Available Vehicles",rsub:"Tap \"Book\" to reserve instantly via WhatsApp",
+  howtag:"How It Works",howtitle:"Rent in Miami in 3 Simple Steps",howsub:"No paperwork headaches. No long queues. Just message us and drive.",
+  s1t:"Pick Your Vehicle",s1d:"Browse our fleet or tell us what you need on WhatsApp. Compact, SUV, luxury, electric — all at transparent daily rates.",
+  s2t:"Confirm in Minutes",s2d:"Message us with your dates and pickup location. Our team responds in under 5 minutes with your confirmed reservation.",
+  s3t:"We Deliver, You Drive",s3d:"We bring the car to your hotel, Airbnb, or airport terminal. No shuttle, no extra stops — just keys in hand and the open road.",
+  flttag:"Our Fleet",flttitle:"Every Car for Every Trip",fltcta:"See Full Fleet",
+  fc:"From $45/day",fs:"From $79/day",fl:"From $129/day",fe:"From $89/day",
+  catc:"Compact",catl:"Luxury",cate:"Electric",
+  ceg:"Toyota Corolla · Honda Civic",seg:"RAV4 · Explorer · Pilot",leg:"Mercedes · BMW · Audi",eeg:"Tesla Model 3 · Model Y",
+  whytag:"Why Ride & Go",whytitle:"The Miami Rental Experience You Deserve",whysub:"We built Ride & Go because renting a car should be as easy as sending a text message.",
+  w1t:"Confirmed in 5 Minutes",w1d:"Send us a WhatsApp and our team responds immediately. No bots — a real person handles your reservation 24/7.",w1g:"⚡ Fastest in Miami",
+  w2t:"Full Insurance Included",w2d:"Every rental includes collision, liability, and roadside assistance. Drive completely worry-free — no surprises at checkout.",w2g:"✅ Zero Surprises",
+  w3t:"Free Door-to-Door Delivery",w3d:"We deliver to any address in Miami-Dade — hotels, Airbnbs, MIA, FLL, and OPF airports — at zero extra charge.",w3g:"🚚 All Miami-Dade",
+  w4t:"100% Transparent Pricing",w4d:"What you see is what you pay. Taxes, insurance, and delivery are always included. No mysterious fees at pickup.",w4g:"💰 No Hidden Fees",
+  w5t:"New-Model Fleet Only",w5d:"Every vehicle is 2022 or newer, fully sanitized and inspected before each rental. Always clean, always reliable.",w5g:"🏆 2022+ Models",
+  w6t:"24/7 Human Support",w6d:"Flat tire at 2am? Fender bender on I-95? Our team is on WhatsApp around the clock. Real help, always.",w6g:"📞 Always Available",
+  rtag:"Customer Reviews",rtitle2:"Don't Take Our Word for It",rsub2:"Over 4,800 customers have rented with us. Here's what a few of them say.",
+  r1:'"I messaged at 10pm and had a confirmed Tesla delivered to my Brickell hotel by 9am. Spotless car, zero hassle. This is how car rental should work."',
+  r2:'"Rented an Explorer for a week-long Keys road trip with the whole family. Great price and they picked it up from our hotel when we left. 100% will use again."',
+  r3:'"BMW 5-series for a business trip. Immaculate condition. The driver was at MIA before I even got my luggage. Best rental experience I\'ve ever had, period."',
+  atag:"Service Area",atitle:"We Cover All of Miami",asub:"Whether you land at MIA or stay in Wynwood, we'll have your car waiting. Free delivery to every major neighborhood and all three airports.",
+  maptext:"Free delivery across all Miami-Dade County. Tell us where you are — we'll be there.",mapcta:"Confirm My Location",
+  faqtitle:"Questions? We've Got Answers",faqsub:"Everything you need to know before booking your Miami rental.",
+  faqstill:"Still have questions?",faqcp:"Our team is on WhatsApp 24/7. A real person answers in minutes — no bots.",faqcta:"Chat with Us",
+  q1:"Do you deliver to the airport?",a1:"Yes! We deliver directly to MIA, FLL, and OPF at no extra charge. Just share your flight number — we'll be waiting when you land.",
+  q2:"Is insurance included?",a2:"Absolutely. Every rental includes basic liability and collision coverage. No hidden add-ons at pickup — what you see is what you pay.",
+  q3:"Can I pay with cash?",a3:"Yes, we accept cash (USD), Zelle, Visa, Mastercard, and Amex. Refundable security deposit of $300–$500, returned within 3 business days.",
+  q4:"Will someone assist us during our stay?",a4:"Always. Our team is on WhatsApp 24/7 for the entire duration of your rental. Flat tire at 2am? We've got you covered.",
+  q5:"Are tolls and mileage included?",a5:"Mileage is unlimited — no per-mile charges. Tolls are not included; you'll pay at booths or use a SunPass. We can help you set one up.",
+  promo_title:"Rent 7 days · Get 1 FREE",promo_sub:"Book any vehicle for a full week and we'll add an extra day at no charge. Ask us on WhatsApp.",promo_cta:"Claim This Deal",
+  ctah1:"Ready to Hit",ctah2:"Miami's Roads?",
+  ctap:"Join 4,800+ travelers who chose Ride & Go. Message us on WhatsApp — your car will be confirmed in minutes.",
+  ctawa:"Book on WhatsApp Now",ctanote:"Average response time: under 4 minutes · Available 24/7",
+  fdesc:"Miami's premier car rental. Premium vehicles, free delivery, full insurance — booked in seconds via WhatsApp.",
+  ff:"Our Fleet",flinks:"Quick Links",fcontact:"Contact",fhrs:"24/7 Available",fareas:"Service Areas",
+  frights:"All rights reserved.",fprivacy:"Privacy Policy",fterms:"Terms of Use",fbadge:"Respond in under 5 min",
+  watip:"💬 Chat with us!",
+  fedini_credit:"Made with ❤️ by Fedini ©. The digital presence your business deserves."
+},
+es:{
+  nav_how:"Cómo Funciona",nav_fleet:"Flota",nav_why:"Por Qué Nosotros",nav_faq:"Preguntas",nav_cta:"Reservar",
+  eyebrow:"4.9★ en Google · +4,800 clientes",
+  h1a:"Renta un auto",h1b:"en Miami hoy.",h1c:"",
+  hsub:"Lo llevamos a tu hotel, Airbnb o aeropuerto. Escríbenos por WhatsApp y confirmamos en minutos — sin formularios, sin colas.",
+  p1:"✓ Entrega gratis en todo Miami-Dade",p2:"✓ Seguro completo siempre incluido",p3:"✓ Confirmación en menos de 5 minutos",p4:"",
+  hcta1:"Reservar por WhatsApp",hcta2:"Ver Flota",
+  hrating:"4.9 en Google · más de 4,800 rentas",
+  tnum:"4,800+",tlbl:"clientes felices este año",
+  ftitle:"Cotización Instantánea",fsub:"Encuentra tu auto perfecto en segundos",
+  llp:"Lugar de Recogida",llt:"Tipo de Vehículo",llf:"Fecha de Recogida",llt2:"Fecha de Devolución",lld:"Conductores Adicionales",
+  ohotel:"Mi Hotel / Dirección",
+  ocompact:"Compacto – desde $45/día",oluxury:"Lujo – desde $129/día",ominivan:"Minivan – desde $95/día",oelectric:"Eléctrico – desde $89/día",
+  od1:"1 Conductor (incluido)",od2:"2 Conductores (+$10/día)",od3:"3+ Conductores (+$15/día)",
+  bsearch:"Buscar Autos Disponibles",fsec:"Seguro · Sin tarjeta requerida · Cancelación gratuita",
+  blbl:"Nuestra Flota Incluye",
+  m1:"Clientes Felices",m2:"Calificación Google",m3:"Vehículos en Flota",m4:"Años en Miami",
+  rtitle:"Vehículos Disponibles",rsub:"Toca \"Reservar\" para confirmar por WhatsApp",
+  howtag:"Cómo Funciona",howtitle:"Renta en Miami en 3 Pasos Simples",howsub:"Sin papeleo complicado. Sin filas largas. Solo escríbenos y maneja.",
+  s1t:"Elige Tu Vehículo",s1d:"Explora nuestra flota o cuéntanos qué necesitas por WhatsApp. Compacto, SUV, lujo, eléctrico — todo a precios transparentes.",
+  s2t:"Confirmación en Minutos",s2d:"Escríbenos con tus fechas y lugar de recogida. Respondemos en menos de 5 minutos con tu reserva confirmada.",
+  s3t:"Nosotros Entregamos",s3d:"Llevamos el auto a tu hotel, Airbnb o aeropuerto. Sin shuttle, sin paradas extra — solo las llaves y la carretera.",
+  flttag:"Nuestra Flota",flttitle:"Un Auto para Cada Viaje",fltcta:"Ver Flota Completa",
+  fc:"Desde $45/día",fs:"Desde $79/día",fl:"Desde $129/día",fe:"Desde $89/día",
+  catc:"Compacto",catl:"Lujo",cate:"Eléctrico",
+  ceg:"Toyota Corolla · Honda Civic",seg:"RAV4 · Explorer · Pilot",leg:"Mercedes · BMW · Audi",eeg:"Tesla Model 3 · Model Y",
+  whytag:"Por Qué Ride & Go",whytitle:"La Experiencia de Renta que Mereces",whysub:"Creamos Ride & Go porque rentar un auto debería ser tan fácil como enviar un mensaje de texto.",
+  w1t:"Confirmado en 5 Minutos",w1d:"Escríbenos y nuestro equipo responde de inmediato. Sin bots — una persona real gestiona tu reserva las 24 horas.",w1g:"⚡ Los Más Rápidos",
+  w2t:"Seguro Completo Incluido",w2d:"Cada renta incluye colisión, responsabilidad civil y asistencia en carretera. Maneja sin preocupaciones.",w2g:"✅ Sin Sorpresas",
+  w3t:"Entrega Gratis a Domicilio",w3d:"Entregamos en cualquier dirección del Condado Miami-Dade — hoteles, Airbnbs y los tres aeropuertos — sin costo adicional.",w3g:"🚚 Todo Miami-Dade",
+  w4t:"Precios 100% Transparentes",w4d:"Lo que ves es lo que pagas. Impuestos, seguro y entrega siempre incluidos. Sin cargos misteriosos.",w4g:"💰 Sin Costos Ocultos",
+  w5t:"Solo Modelos Nuevos",w5d:"Todos los vehículos son modelo 2022 o más nuevos, completamente sanitizados e inspeccionados antes de cada renta.",w5g:"🏆 Solo Modelos 2022+",
+  w6t:"Soporte Humano 24/7",w6d:"¿Llanta ponchada a las 2am? Nuestro equipo está en WhatsApp las 24 horas. Asistencia en carretera siempre disponible.",w6g:"📞 Siempre Disponible",
+  rtag:"Reseñas de Clientes",rtitle2:"No Te Fíes Solo de Nosotros",rsub2:"Más de 4,800 clientes han rentado con nosotros. Esto es lo que dicen.",
+  r1:'"Les escribí a las 10pm y tenía un Tesla confirmado entregado en mi hotel de Brickell a las 9am. Auto impecable, sin papeleo. Así debería funcionar siempre."',
+  r2:'"Renté un Explorer para un viaje familiar a los Keys. Gran precio y lo recogieron del hotel cuando terminamos. Al 100% lo usaré en mi próximo viaje."',
+  r3:'"BMW Serie 5 para viaje de negocios. Impecable. El conductor estaba en MIA antes de que yo recogiera mi equipaje. La mejor experiencia de renta que he tenido."',
+  atag:"Área de Servicio",atitle:"Cubrimos Todo Miami",asub:"Ya sea que aterrices en MIA o te quedes en Wynwood, tendremos tu auto esperándote. Entrega gratis en cada barrio principal y los tres aeropuertos.",
+  maptext:"Entrega gratis en todo el Condado Miami-Dade. Dinos dónde estás — estaremos ahí.",mapcta:"Confirmar Mi Ubicación",
+  faqtitle:"¿Preguntas? Tenemos Respuestas",faqsub:"Todo lo que necesitas saber antes de reservar tu renta en Miami.",
+  faqstill:"¿Aún tienes preguntas?",faqcp:"Nuestro equipo está en WhatsApp 24/7. Una persona real te responde en minutos — sin bots.",faqcta:"Chatea con Nosotros",
+  q1:"¿Se entrega en el aeropuerto?",a1:"¡Sí! Entregamos directamente en MIA, FLL y OPF sin costo adicional. Solo comparte tu número de vuelo y llegada — estaremos esperándote.",
+  q2:"¿Tienen seguros?",a2:"Sí. Cada renta incluye seguro básico de responsabilidad civil y colisión incluido. Sin sorpresas al momento del pickup — lo que ves es lo que pagas.",
+  q3:"¿Se puede pagar en efectivo?",a3:"Sí, aceptamos efectivo (USD), Zelle, Visa, Mastercard y Amex. Se requiere depósito reembolsable de $300–$500, devuelto en 3 días hábiles.",
+  q4:"¿Alguien nos ayudará durante la estadía?",a4:"Siempre. Nuestro equipo está disponible 24/7 por WhatsApp durante toda tu renta. ¿Llanta pinchada a las 2am? Estamos para ayudarte.",
+  q5:"¿Incluyen peajes y millas?",a5:"Las millas son ilimitadas — sin cargos por kilómetro. Los peajes no están incluidos; los pagas en las casetas o con SunPass. Te ayudamos a configurarlo si lo necesitas.",
+  promo_title:"Renta 7 días · ¡1 GRATIS!",promo_sub:"Reserva cualquier vehículo por una semana completa y te agregamos un día extra sin costo. Pregúntanos por WhatsApp.",promo_cta:"Obtener Esta Oferta",
+  ctah1:"¿Listo para Recorrer",ctah2:"las Calles de Miami?",
+  ctap:"Únete a más de 4,800 viajeros que eligieron Ride & Go. Escríbenos por WhatsApp — tu auto estará confirmado en minutos.",
+  ctawa:"Reservar por WhatsApp Ahora",ctanote:"Tiempo de respuesta: menos de 4 minutos · Disponible 24/7",
+  fdesc:"El servicio de renta premium de Miami. Vehículos nuevos, entrega gratis, seguro completo — reservado en segundos por WhatsApp.",
+  ff:"Nuestra Flota",flinks:"Enlaces Rápidos",fcontact:"Contacto",fhrs:"Disponible 24/7",fareas:"Áreas de Servicio",
+  frights:"Todos los derechos reservados.",fprivacy:"Privacidad",fterms:"Términos de Uso",fbadge:"Respondemos en menos de 5 min",
+  watip:"💬 ¡Chatea ahora!",
+  fedini_credit:"Creado con ❤️ por Fedini ©. La presencia digital que tu negocio merece."
+}
+};
+
+const CARS={
+compact:[
+  {name:"Toyota Corolla",year:"2024",img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=640&h=370&fit=crop",price:45,pax:5,bags:2,trans:"Auto",mpg:"32 mpg"},
+  {name:"Honda Civic",year:"2023",img:"https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=640&h=370&fit=crop",price:49,pax:5,bags:2,trans:"Auto",mpg:"36 mpg"}
+],
+suv:[
+  {name:"Toyota RAV4",year:"2024",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=640&h=370&fit=crop",price:79,pax:5,bags:4,trans:"Auto",mpg:"28 mpg"},
+  {name:"Ford Explorer",year:"2024",img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&h=370&fit=crop",price:89,pax:7,bags:5,trans:"Auto",mpg:"24 mpg"}
+],
+luxury:[
+  {name:"Mercedes-Benz C-Class",year:"2024",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=640&h=370&fit=crop",price:129,pax:5,bags:3,trans:"Auto",mpg:"29 mpg"},
+  {name:"BMW 5 Series",year:"2024",img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?w=640&h=370&fit=crop",price:149,pax:5,bags:3,trans:"Auto",mpg:"27 mpg"}
+],
+minivan:[
+  {name:"Toyota Sienna",year:"2024",img:"https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=640&h=370&fit=crop",price:95,pax:8,bags:6,trans:"Auto",mpg:"35 mpg"},
+  {name:"Chrysler Pacifica",year:"2023",img:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=640&h=370&fit=crop",price:99,pax:7,bags:6,trans:"Auto",mpg:"28 mpg"}
+],
+electric:[
+  {name:"Tesla Model 3",year:"2024",img:"https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=640&h=370&fit=crop",price:89,pax:5,bags:3,trans:"Auto",mpg:"358mi range"},
+  {name:"Tesla Model Y",year:"2024",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=640&h=370&fit=crop",price:109,pax:5,bags:4,trans:"Auto",mpg:"330mi range"}
+]
+};
+
+let lang='en';
+
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(T[l][k]!==undefined){
+      if(el.tagName==='OPTION') el.textContent=T[l][k];
+      else el.innerHTML=T[l][k];
+    }
+  });
+  ['btnEN','btnES','btnEN2','btnES2'].forEach(id=>{
+    const b=document.getElementById(id);
+    if(b) b.classList.toggle('active',b.id.toUpperCase().includes(l.toUpperCase()));
+  });
+  const waMsg=l==='es'?'Hola!%20Quiero%20rentar%20un%20auto':'Hi!%20I%20want%20to%20rent%20a%20car';
+  document.querySelectorAll('.wa-link').forEach(a=>{
+    const base=a.href.split('?')[0];
+    a.href=base+'?text='+waMsg;
+  });
+}
+
+function showResults(){
+  const type=document.getElementById('fType').value;
+  const l=lang;
+  const cats={compact:l==='es'?'Compacto':'Compact',suv:'SUV',luxury:l==='es'?'Lujo':'Luxury',minivan:'Minivan',electric:l==='es'?'Eléctrico':'Electric'};
+  const grid=document.getElementById('carsGrid');
+  grid.innerHTML='';
+  (CARS[type]||[]).forEach(c=>{
+    const bk=l==='es'?'Reservar':'Book';
+    const pd=l==='es'?'/día':'/day';
+    grid.innerHTML+=`<div class="ccard" data-anim="up">
+      <div class="cimg"><img src="${c.img}" alt="${c.name}" loading="lazy"/><div class="cbadge">${cats[type]}</div></div>
+      <div class="cbody">
+        <div class="cname">${c.name}</div>
+        <div class="cmodel">${c.year} · ${cats[type]}</div>
+        <div class="cspecs">
+          <span class="spec"><i class="fa-solid fa-user"></i>${c.pax} ${l==='es'?'pas.':'pax'}</span>
+          <span class="spec"><i class="fa-solid fa-suitcase"></i>${c.bags} ${l==='es'?'maletas':'bags'}</span>
+          <span class="spec"><i class="fa-solid fa-gear"></i>${c.trans}</span>
+          <span class="spec"><i class="fa-solid fa-gas-pump"></i>${c.mpg}</span>
+        </div>
+        <div class="cbot">
+          <div class="cprice"><div class="price">$${c.price}</div><div class="per">${pd}</div></div>
+          <button class="btn-wa" onclick="bookCar('${c.name}','${c.price}')"><i class="fab fa-whatsapp"></i>${bk}</button>
+        </div>
+      </div></div>`;
+  });
+  const res=document.getElementById('results');
+  res.style.display='block';
+  setTimeout(()=>{
+    res.querySelectorAll('[data-anim]').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*120));
+  },50);
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function bookCar(name,price){
+  const msg=lang==='es'?`Hola! Quiero reservar: ${name} a $${price}/día`:`Hi! I want to book: ${name} at $${price}/day`;
+  window.open('https://wa.me/17867282882?text='+encodeURIComponent(msg),'_blank');
+}
+
+function tFaq(btn){
+  const a=btn.nextElementSibling;
+  const open=a.classList.contains('faopen');
+  document.querySelectorAll('.fa.faopen').forEach(x=>x.classList.remove('faopen'));
+  document.querySelectorAll('.fq.fqopen').forEach(x=>x.classList.remove('fqopen'));
+  document.querySelectorAll('.fitem.fopen').forEach(x=>x.classList.remove('fopen'));
+  if(!open){a.classList.add('faopen');btn.classList.add('fqopen');btn.closest('.fitem').classList.add('fopen');}
+}
+
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.getAttribute('data-count');
+    let v=0;const step=Math.max(1,Math.ceil(target/55));
+    const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=v.toLocaleString();if(v>=target)clearInterval(t);},22);
+    cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+(function(){
+  const a=new Date(),b=new Date();
+  a.setDate(a.getDate()+1);b.setDate(b.getDate()+5);
+  const f=d=>d.toISOString().split('T')[0];
+  document.getElementById('fFrom').value=f(a);
+  document.getElementById('fTo').value=f(b);
+})();
+
+setTimeout(()=>{const t=document.getElementById('waTip');if(t)t.style.display='none';},5000);
+
+/* ── COOKIE BANNER ── */
+(function(){
+  const KEY='rg_cookie_consent';
+  const consent=localStorage.getItem(KEY);
+  if(consent) return; // already decided
+
+  const banner=document.createElement('div');
+  banner.id='cookieBanner';
+  banner.innerHTML=`
+    <div id="cookieInner">
+      <div id="cookieText">
+        <span id="cookieIcon">🍪</span>
+        <div>
+          <strong id="cookieTitle">We use cookies</strong>
+          <p id="cookieDesc">We use cookies to improve your experience and analyze site traffic. You can accept or decline non-essential cookies.</p>
+        </div>
+      </div>
+      <div id="cookieBtns">
+        <button id="cookieDecline">Decline</button>
+        <button id="cookieAccept">Accept All</button>
+      </div>
+    </div>`;
+  document.body.appendChild(banner);
+
+  // Translate banner text if lang is already set
+  function updateBannerLang(l){
+    const isES=l==='es';
+    document.getElementById('cookieTitle').textContent=isES?'Usamos cookies':'We use cookies';
+    document.getElementById('cookieDesc').textContent=isES
+      ?'Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Podés aceptar o rechazar las cookies no esenciales.'
+      :'We use cookies to improve your experience and analyze site traffic. You can accept or decline non-essential cookies.';
+    document.getElementById('cookieDecline').textContent=isES?'Rechazar':'Decline';
+    document.getElementById('cookieAccept').textContent=isES?'Aceptar todo':'Accept All';
+  }
+  updateBannerLang(typeof lang!=='undefined'?lang:'en');
+
+  // Hook into setLang so banner translates too
+  const _orig=window.setLang;
+  window.setLang=function(l){_orig(l);updateBannerLang(l);};
+
+  function dismiss(val){
+    localStorage.setItem(KEY,val);
+    banner.classList.add('cookieHide');
+    setTimeout(()=>banner.remove(),400);
+  }
+  document.getElementById('cookieAccept').addEventListener('click',()=>dismiss('accepted'));
+  document.getElementById('cookieDecline').addEventListener('click',()=>dismiss('declined'));
+
+  // Animate in after short delay
+  setTimeout(()=>banner.classList.add('cookieShow'),600);
+})();
+</script>
+</body>
+</html>
