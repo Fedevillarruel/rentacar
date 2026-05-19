@@ -304,6 +304,16 @@
   .fi-feat{background:#f7f7f7;border:1px solid var(--border);border-radius:20px;font-size:.74rem;font-weight:600;padding:4px 12px;color:#555;}
   .fi-detail-cta{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:10px 22px;border-radius:var(--r-sm);font-size:.85rem;font-weight:700;text-decoration:none;transition:.2s;}
   .fi-detail-cta:hover{opacity:.9;}
+  /* FLEET CAROUSEL – desktop */
+  @media(min-width:769px){
+    .fgrid-fleet{grid-template-columns:1.75fr 1fr !important;grid-template-rows:repeat(3,158px);}
+    .fgrid-fleet .fi{height:auto;transition:opacity .3s,box-shadow .3s,transform .3s;}
+    .fgrid-fleet .fi.fi-thumb{opacity:.72;}
+    .fgrid-fleet .fi.fi-thumb:hover{opacity:1;transform:scale(1.02);}
+    .fgrid-fleet .fi.fi-main .fov{background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.15) 55%,transparent 100%);}
+    .fgrid-fleet .fi.fi-main .fov h4{font-size:1.25rem;}
+    .fgrid-fleet .fi.fi-main .fov span{font-size:.85rem;}
+  }
 
   /* RESPONSIVE */
   @media(max-width:1100px){
@@ -1094,13 +1104,7 @@ const FLEET_DETAIL={
   suv:{pax:7,bags:5,models:'Toyota RAV4 2024 · Ford Explorer 2024 · Honda Pilot',feats:['A/C','Bluetooth','AWD option','Backup Camera','USB Charging'],price:'$65',wa:'Hi!+I\'m+interested+in+an+SUV+%2F+Truck.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+SUV+%2F+Camioneta.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
   minivan:{pax:8,bags:6,models:'Toyota Sienna 2024 · Chrysler Pacifica 2024',feats:['A/C','Bluetooth','3rd Row Seating','Sliding Doors','USB Charging'],price:'$85',wa:'Hi!+I\'m+interested+in+a+Minivan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+Minivan.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'}
 };
-function toggleFleetCard(card){
-  const cat=card.dataset.cat;
-  const detail=document.getElementById('fiDetail');
-  const isOpen=card.classList.contains('fi-active');
-  document.querySelectorAll('.fi').forEach(f=>f.classList.remove('fi-active'));
-  if(isOpen){detail.classList.remove('fdopen');return;}
-  card.classList.add('fi-active');
+function buildFleetPanel(cat,detail){
   const d=FLEET_DETAIL[cat];
   const isEs=document.documentElement.lang==='es';
   const paxLbl=isEs?'Pasajeros':'Passengers';
@@ -1113,16 +1117,63 @@ function toggleFleetCard(card){
     <div class="fi-specs">
       <div class="fi-spec"><i class="fa-solid fa-user-group"></i>${d.pax} ${paxLbl}</div>
       <div class="fi-spec"><i class="fa-solid fa-suitcase-rolling"></i>${d.bags} ${bagsLbl}</div>
-      <div class="fi-solid fi-spec"><i class="fa-solid fa-snowflake"></i>A/C</div>
+      <div class="fi-spec"><i class="fa-solid fa-snowflake"></i>A/C</div>
       <div class="fi-spec"><i class="fa-solid fa-tag"></i>${fromLbl} ${d.price}/day</div>
     </div>
     <div class="fi-models"><i class="fa-solid fa-car" style="color:var(--muted2);margin-right:6px;"></i><strong>${modelsLbl}:</strong> ${d.models}</div>
     <div class="fi-feats">${d.feats.map(f=>`<span class="fi-feat"><i class="fa-solid fa-check" style="color:var(--red);margin-right:4px;font-size:.65rem;"></i>${f}</span>`).join('')}</div>
     <a href="https://wa.me/17867282882?text=${waLink}" class="fi-detail-cta wa-link"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i>${ctaLbl}</a>
   </div>`;
+}
+function arrangeCarousel(activeCat){
+  const cats=['compact','sedan','suv','minivan'];
+  const order=[activeCat,...cats.filter(k=>k!==activeCat)];
+  document.querySelectorAll('.fgrid-fleet .fi').forEach(fi=>{
+    const pos=order.indexOf(fi.dataset.cat);
+    fi.classList.remove('fi-active','fi-main','fi-thumb');
+    if(pos===0){
+      fi.style.gridColumn='1';
+      fi.style.gridRow='1 / 4';
+      fi.classList.add('fi-active','fi-main');
+    } else {
+      fi.style.gridColumn='2';
+      fi.style.gridRow=`${pos} / ${pos+1}`;
+      fi.classList.add('fi-thumb');
+    }
+  });
+  const detail=document.getElementById('fiDetail');
+  buildFleetPanel(activeCat,detail);
+  detail.classList.add('fdopen');
+}
+function toggleFleetCard(card){
+  if(window.innerWidth>=769){
+    arrangeCarousel(card.dataset.cat);
+    return;
+  }
+  const cat=card.dataset.cat;
+  const detail=document.getElementById('fiDetail');
+  const isOpen=card.classList.contains('fi-active');
+  document.querySelectorAll('.fi').forEach(f=>f.classList.remove('fi-active'));
+  if(isOpen){detail.classList.remove('fdopen');return;}
+  card.classList.add('fi-active');
+  buildFleetPanel(cat,detail);
   detail.classList.add('fdopen');
   setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 }
+function initFleetCarousel(){
+  if(window.innerWidth>=769){
+    arrangeCarousel('compact');
+  } else {
+    document.querySelectorAll('.fgrid-fleet .fi').forEach(fi=>{
+      fi.style.gridColumn='';fi.style.gridRow='';
+      fi.classList.remove('fi-main','fi-thumb');
+    });
+    document.getElementById('fiDetail').classList.remove('fdopen');
+  }
+}
+initFleetCarousel();
+let _rTimer;
+window.addEventListener('resize',()=>{clearTimeout(_rTimer);_rTimer=setTimeout(initFleetCarousel,150);});
 
 function tFaq(btn){
   const a=btn.nextElementSibling;
