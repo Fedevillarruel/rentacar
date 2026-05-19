@@ -289,6 +289,22 @@
   [data-d="3"]{transition-delay:.3s;}[data-d="4"]{transition-delay:.4s;}
   [data-d="5"]{transition-delay:.5s;}[data-d="6"]{transition-delay:.6s;}
 
+  /* FLEET DETAIL PANEL */
+  .fi{cursor:pointer;}
+  .fi:hover img{transform:scale(1.04);}
+  .fi.fi-active{border-color:var(--red) !important;box-shadow:0 0 0 2px var(--red) !important;}
+  .fi-detail{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);margin-top:10px;}
+  .fi-detail.fdopen{max-height:500px;}
+  .fi-detail-inner{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px 26px;}
+  .fi-specs{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:12px;}
+  .fi-spec{display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:700;color:#0d0d0d;}
+  .fi-spec i{color:var(--red);font-size:.9rem;width:16px;text-align:center;}
+  .fi-models{font-size:.8rem;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+  .fi-feats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .fi-feat{background:#f7f7f7;border:1px solid var(--border);border-radius:20px;font-size:.74rem;font-weight:600;padding:4px 12px;color:#555;}
+  .fi-detail-cta{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:10px 22px;border-radius:var(--r-sm);font-size:.85rem;font-weight:700;text-decoration:none;transition:.2s;}
+  .fi-detail-cta:hover{opacity:.9;}
+
   /* RESPONSIVE */
   @media(max-width:1100px){
     .hero-inner{grid-template-columns:1fr;}
@@ -572,7 +588,7 @@
     <a href="https://wa.me/17867282882?text=Hi%2C+I+want+the+long-term+deal!" class="wa-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0d0d0d;padding:11px 22px;border-radius:var(--r-sm);font-weight:800;font-size:.85rem;white-space:nowrap;" data-i18n="promo_cta">Get a Quote</a>
   </div>
   <div class="fgrid fgrid-fleet">
-    <div class="fi" data-anim="up">
+    <div class="fi" data-anim="up" data-cat="compact" onclick="toggleFleetCard(this)">
       <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&h=400&fit=crop" alt="Compact"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fc">From $45/day</div>
@@ -580,7 +596,7 @@
         <span data-i18n="ceg">Toyota Corolla · Honda Civic · 5 pax / 2 bags</span>
       </div>
     </div>
-    <div class="fi" data-anim="up" data-d="2">
+    <div class="fi" data-anim="up" data-d="2" data-cat="sedan" onclick="toggleFleetCard(this)">
       <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&h=400&fit=crop" alt="Sedan"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fsd">From $45/day</div>
@@ -588,7 +604,7 @@
         <span data-i18n="sdeg">Toyota Camry · Honda Accord · 5 pax / 3 bags</span>
       </div>
     </div>
-    <div class="fi" data-anim="up" data-d="3">
+    <div class="fi" data-anim="up" data-d="3" data-cat="suv" onclick="toggleFleetCard(this)">
       <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="SUV"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fs">From $65/day</div>
@@ -596,7 +612,7 @@
         <span data-i18n="seg">RAV4 · Explorer · Pilot · 5-7 pax / 4-5 bags</span>
       </div>
     </div>
-    <div class="fi" data-anim="up" data-d="4" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
+    <div class="fi" data-anim="up" data-d="4" data-cat="minivan" onclick="toggleFleetCard(this)" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
       <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Minivan"/>
       <div class="fov">
         <div class="ffrom" style="background:#f4a800;color:#000;font-weight:800;" data-i18n="fm">⭐ From $85/day</div>
@@ -605,7 +621,8 @@
       </div>
     </div>
   </div>
-  <p style="text-align:center;font-size:.75rem;color:rgba(255,255,255,.38);margin-top:14px;" data-i18n="fleet_disclaimer">* Subject to availability. Images are for reference only and may not represent the exact vehicle assigned.</p>
+  <div id="fiDetail" class="fi-detail"></div>
+  <p style="text-align:center;font-size:.75rem;color:#aaa;margin-top:16px;" data-i18n="fleet_disclaimer">* Subject to availability. Images are for reference only and may not represent the exact vehicle assigned.</p>
 </section>
 
 <!-- WHY US -->
@@ -657,10 +674,10 @@
 
 <!-- MIAMI GALLERY -->
 <section class="miami-gallery">
-  <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop&crop=center" alt="Miami Beach"/>
-  <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=600&fit=crop&crop=center" alt="Miami Skyline"/>
-  <img src="https://images.unsplash.com/photo-1565329921943-7e537b7a5d1e?w=800&h=600&fit=crop&crop=center" alt="South Beach"/>
-  <img src="https://images.unsplash.com/photo-1481026469463-66327c86e544?w=800&h=600&fit=crop&crop=center" alt="Miami Streets"/>
+  <img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=800&h=600&fit=crop&crop=center" alt="South Beach Miami"/>
+  <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&h=600&fit=crop&crop=center" alt="Miami Skyline Brickell"/>
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&crop=center" alt="Wynwood Walls Miami"/>
+  <img src="https://images.unsplash.com/photo-1599599810694-b5b37304c041?w=800&h=600&fit=crop&crop=center" alt="Ocean Drive Miami"/>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -1069,6 +1086,42 @@ function showResults(){
 function bookCar(name,price){
   const msg=lang==='es'?`Hola! Quiero reservar: ${name} a $${price}/día`:`Hi! I want to book: ${name} at $${price}/day`;
   window.open('https://wa.me/17867282882?text='+encodeURIComponent(msg),'_blank');
+}
+
+const FLEET_DETAIL={
+  compact:{pax:5,bags:2,models:'Toyota Corolla 2024 · Honda Civic 2024',feats:['A/C','Bluetooth','Backup Camera','USB Charging'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Compact+car.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+auto+Compacto.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
+  sedan:{pax:5,bags:3,models:'Toyota Camry 2024 · Honda Accord 2024',feats:['A/C','Bluetooth','Backup Camera','USB Charging','Cruise Control'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Sedan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+Sed%C3%A1n.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
+  suv:{pax:7,bags:5,models:'Toyota RAV4 2024 · Ford Explorer 2024 · Honda Pilot',feats:['A/C','Bluetooth','AWD option','Backup Camera','USB Charging'],price:'$65',wa:'Hi!+I\'m+interested+in+an+SUV+%2F+Truck.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+SUV+%2F+Camioneta.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
+  minivan:{pax:8,bags:6,models:'Toyota Sienna 2024 · Chrysler Pacifica 2024',feats:['A/C','Bluetooth','3rd Row Seating','Sliding Doors','USB Charging'],price:'$85',wa:'Hi!+I\'m+interested+in+a+Minivan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+Minivan.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'}
+};
+function toggleFleetCard(card){
+  const cat=card.dataset.cat;
+  const detail=document.getElementById('fiDetail');
+  const isOpen=card.classList.contains('fi-active');
+  document.querySelectorAll('.fi').forEach(f=>f.classList.remove('fi-active'));
+  if(isOpen){detail.classList.remove('fdopen');return;}
+  card.classList.add('fi-active');
+  const d=FLEET_DETAIL[cat];
+  const isEs=document.documentElement.lang==='es';
+  const paxLbl=isEs?'Pasajeros':'Passengers';
+  const bagsLbl=isEs?'Maletas':'Bags';
+  const fromLbl=isEs?'Desde':'From';
+  const ctaLbl=isEs?'Consultar por WhatsApp':'Get a Quote on WhatsApp';
+  const modelsLbl=isEs?'Modelos disponibles':'Available models';
+  const waLink=isEs?d.waes:d.wa;
+  detail.innerHTML=`<div class="fi-detail-inner">
+    <div class="fi-specs">
+      <div class="fi-spec"><i class="fa-solid fa-user-group"></i>${d.pax} ${paxLbl}</div>
+      <div class="fi-spec"><i class="fa-solid fa-suitcase-rolling"></i>${d.bags} ${bagsLbl}</div>
+      <div class="fi-solid fi-spec"><i class="fa-solid fa-snowflake"></i>A/C</div>
+      <div class="fi-spec"><i class="fa-solid fa-tag"></i>${fromLbl} ${d.price}/day</div>
+    </div>
+    <div class="fi-models"><i class="fa-solid fa-car" style="color:var(--muted2);margin-right:6px;"></i><strong>${modelsLbl}:</strong> ${d.models}</div>
+    <div class="fi-feats">${d.feats.map(f=>`<span class="fi-feat"><i class="fa-solid fa-check" style="color:var(--red);margin-right:4px;font-size:.65rem;"></i>${f}</span>`).join('')}</div>
+    <a href="https://wa.me/17867282882?text=${waLink}" class="fi-detail-cta wa-link"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i>${ctaLbl}</a>
+  </div>`;
+  detail.classList.add('fdopen');
+  setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 }
 
 function tFaq(btn){
