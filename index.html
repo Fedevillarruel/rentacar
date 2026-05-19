@@ -53,7 +53,8 @@
 
   /* HERO */
   .hero{min-height:100vh;display:flex;align-items:center;padding:100px 6% 80px;position:relative;overflow:hidden;background:var(--bg);}
-  .hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1900&h=1100&fit=crop&crop=center') center/cover no-repeat;pointer-events:none;}
+  .hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=1900&h=1100&fit=crop&crop=center') center/cover no-repeat;pointer-events:none;}
+  .hero-photo.night{background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1900&h=1100&fit=crop&crop=center');}
   .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,12,16,.93) 0%,rgba(9,12,16,.7) 50%,rgba(9,12,16,.4) 100%);}
   .hero-inner{max-width:1260px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center;position:relative;z-index:1;}
   .eyebrow{display:none;}
@@ -380,16 +381,16 @@
   <div class="hero-photo"></div>
   <div class="hero-inner">
     <div>
-      <p class="hero-label">Miami Car Rental &mdash; Entrega a domicilio</p>
+      <p class="hero-label">Miami Car Rental &mdash; Hotel &amp; Airbnb Delivery</p>
       <h1>
         <span data-i18n="h1a">Rent a car</span><br/>
         <span data-i18n="h1b">in Miami today.</span>
       </h1>
-      <p class="hero-sub" data-i18n="hsub">We drop it off at your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no forms, no waiting in line.</p>
+      <p class="hero-sub" data-i18n="hsub">We deliver personally to your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no lines, no paperwork.</p>
       <ul class="hero-list">
-        <li><span data-i18n="p1">✓ Free delivery anywhere in Miami-Dade</span></li>
-        <li><span data-i18n="p2">✓ Full insurance always included</span></li>
-        <li><span data-i18n="p3">✓ Confirmed in under 5 minutes</span></li>
+        <li><span data-i18n="p1">✓ Unlimited mileage + tolls included</span></li>
+        <li><span data-i18n="p2">✓ Full insurance – $500 deductible</span></li>
+        <li><span data-i18n="p3">✓ Personalized delivery to your hotel or Airbnb in Miami</span></li>
       </ul>
       <div class="hero-btns">
         <a href="https://wa.me/17867282882?text=Hi" class="btn-red wa-link"><i class="fab fa-whatsapp"></i><span data-i18n="hcta1">Book on WhatsApp</span></a>
@@ -418,21 +419,19 @@
             <select id="fPickup">
               <option>✈ Miami Airport (MIA)</option>
               <option>✈ Fort Lauderdale (FLL)</option>
-              <option>✈ Opa-locka (OPF)</option>
-              <option>📍 Brickell</option>
-              <option>📍 South Beach</option>
-              <option>📍 Doral</option>
-              <option data-i18n="ohotel">📍 My Hotel / Address</option>
+              <option>✈ Orlando Airport (MCO)</option>
+              <option>🚢 Port of Miami</option>
+              <option>🚢 Port Everglades</option>
+              <option data-i18n="ohotel">📍 My Hotel / Airbnb</option>
             </select>
           </div>
           <div class="fg">
             <label><i class="fa-solid fa-car"></i><span data-i18n="llt">Vehicle Type</span></label>
             <select id="fType">
               <option value="compact" data-i18n="ocompact">Compact – from $45/day</option>
-              <option value="suv">SUV – from $79/day</option>
-              <option value="luxury" data-i18n="oluxury">Luxury – from $129/day</option>
-              <option value="minivan" data-i18n="ominivan">Minivan – from $95/day</option>
-              <option value="electric" data-i18n="oelectric">Electric – from $89/day</option>
+              <option value="sedan" data-i18n="osedan">Sedan – from $45/day</option>
+              <option value="suv" data-i18n="osuv">SUV / Truck – from $65/day</option>
+              <option value="minivan" data-i18n="ominivan">Minivan – from $85/day</option>
             </select>
           </div>
         </div>
@@ -451,13 +450,13 @@
             <label><i class="fa-solid fa-user"></i><span data-i18n="lld">Additional Drivers</span></label>
             <select id="fDrivers">
               <option data-i18n="od1">1 Driver (included)</option>
-              <option data-i18n="od2">2 Drivers (+$10/day)</option>
-              <option data-i18n="od3">3+ Drivers (+$15/day)</option>
+              <option data-i18n="od2">2 Drivers (included)</option>
+              <option data-i18n="od3">3rd+ Driver (+$15/day each)</option>
             </select>
           </div>
         </div>
-        <button class="btn-search" onclick="showResults()">
-          <i class="fa-solid fa-magnifying-glass"></i><span data-i18n="bsearch">Search Available Cars</span>
+        <button class="btn-search" onclick="searchToWhatsApp()">
+          <i class="fab fa-whatsapp"></i><span data-i18n="bsearch">Check Availability on WhatsApp</span>
         </button>
         <div class="fsecure"><i class="fa-solid fa-lock"></i><span data-i18n="fsec">Secure · No credit card required · Free cancellation</span></div>
       </div>
@@ -470,8 +469,8 @@
   <div class="brands-inner">
     <span class="bl" data-i18n="blbl">Our Fleet Includes</span>
     <div class="bi">
-      <span>TOYOTA</span><span>HONDA</span><span>BMW</span>
-      <span>MERCEDES</span><span>FORD</span><span>TESLA</span><span>CHRYSLER</span>
+      <span>TOYOTA</span><span>HONDA</span><span>FORD</span>
+      <span>CHRYSLER</span><span>HYUNDAI</span><span>KIA</span><span>NISSAN</span>
     </div>
   </div>
 </div>
@@ -524,7 +523,7 @@
         <div class="snb">01</div>
         <div class="sc">
           <h4 data-i18n="s1t">Pick Your Vehicle</h4>
-          <p data-i18n="s1d">Browse our fleet or tell us what you need on WhatsApp. Compact, SUV, luxury, electric — all at transparent daily rates.</p>
+          <p data-i18n="s1d">Browse our fleet or tell us what you need on WhatsApp. Compact, sedan, SUV, or minivan — all at transparent daily rates.</p>
         </div>
       </div>
       <div class="step">
@@ -559,43 +558,43 @@
     <div style="display:flex;align-items:center;gap:14px;">
       <span style="font-size:1.8rem;">🎉</span>
       <div>
-        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;" data-i18n="promo_title">Rent 7 days · Get 1 FREE</div>
-        <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-top:2px;" data-i18n="promo_sub">Book any vehicle for a full week and we'll add an extra day at no charge. Ask us on WhatsApp.</div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;" data-i18n="promo_title">Long-Term Rental Deal</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-top:2px;" data-i18n="promo_sub">Book any vehicle for 7+ days and unlock our best long-term rates. Ask about weekly and monthly discounts on WhatsApp.</div>
       </div>
     </div>
-    <a href="https://wa.me/17867282882?text=Hi%2C+I+want+the+7-day+deal!" class="wa-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0d0d0d;padding:11px 22px;border-radius:var(--r-sm);font-weight:800;font-size:.85rem;white-space:nowrap;" data-i18n="promo_cta">Claim This Deal</a>
+    <a href="https://wa.me/17867282882?text=Hi%2C+I+want+the+long-term+deal!" class="wa-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0d0d0d;padding:11px 22px;border-radius:var(--r-sm);font-weight:800;font-size:.85rem;white-space:nowrap;" data-i18n="promo_cta">Get a Quote</a>
   </div>
   <div class="fgrid fgrid-fleet">
-    <div class="fi" data-anim="up" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
-      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Minivan"/>
-      <div class="fov">
-        <div class="ffrom" style="background:#f4a800;color:#000;font-weight:800;">⭐ #1 Más Rentado</div>
-        <h4 data-i18n="catmv">Minivan</h4>
-        <span>Sienna · Pacifica · 7-8 pasajeros</span>
-      </div>
-    </div>
-    <div class="fi" data-anim="up" data-d="2" style="border-color:rgba(230,57,70,.5);">
-      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="SUV"/>
-      <div class="fov">
-        <div class="ffrom" data-i18n="fs">From $79/day</div>
-        <h4>SUV</h4>
-        <span data-i18n="seg">RAV4 · Explorer · Pilot</span>
-      </div>
-    </div>
-    <div class="fi" data-anim="up" data-d="3">
+    <div class="fi" data-anim="up">
       <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&h=400&fit=crop" alt="Compact"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fc">From $45/day</div>
         <h4 data-i18n="catc">Compact</h4>
-        <span data-i18n="ceg">Toyota Corolla · Honda Civic</span>
+        <span data-i18n="ceg">Toyota Corolla · Honda Civic · 5 pax / 2 bags</span>
       </div>
     </div>
-    <div class="fi" data-anim="up" data-d="4">
-      <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&h=400&fit=crop" alt="Electric"/>
+    <div class="fi" data-anim="up" data-d="2">
+      <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&h=400&fit=crop" alt="Sedan"/>
       <div class="fov">
-        <div class="ffrom" data-i18n="fe">From $89/day</div>
-        <h4 data-i18n="cate">Electric</h4>
-        <span data-i18n="eeg">Tesla Model 3 · Model Y</span>
+        <div class="ffrom" data-i18n="fsd">From $45/day</div>
+        <h4 data-i18n="catsd">Sedan</h4>
+        <span data-i18n="sdeg">Toyota Camry · Honda Accord · 5 pax / 3 bags</span>
+      </div>
+    </div>
+    <div class="fi" data-anim="up" data-d="3">
+      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="SUV"/>
+      <div class="fov">
+        <div class="ffrom" data-i18n="fs">From $65/day</div>
+        <h4 data-i18n="catsuv">SUV / Truck</h4>
+        <span data-i18n="seg">RAV4 · Explorer · Pilot · 5-7 pax / 4-5 bags</span>
+      </div>
+    </div>
+    <div class="fi" data-anim="up" data-d="4" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
+      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Minivan"/>
+      <div class="fov">
+        <div class="ffrom" style="background:#f4a800;color:#000;font-weight:800;" data-i18n="fm">⭐ From $85/day</div>
+        <h4 data-i18n="catmv">Minivan</h4>
+        <span data-i18n="mveg">Toyota Sienna · Chrysler Pacifica · 7-8 pax / 6 bags</span>
       </div>
     </div>
   </div>
@@ -618,26 +617,26 @@
     <div class="wcard" data-anim="up" data-d="1">
       <div class="wicon"><i class="fa-solid fa-shield-halved"></i></div>
       <h3 data-i18n="w2t">Full Insurance Included</h3>
-      <p data-i18n="w2d">Every rental includes collision, liability, and roadside assistance. Drive completely worry-free — no surprises at checkout.</p>
-      <span class="wtag" data-i18n="w2g">✅ Zero Surprises</span>
+      <p data-i18n="w2d">Every rental includes full collision and liability coverage with a <strong>$500 deductible</strong>. Your maximum financial responsibility is always clear — no surprises at checkout.</p>
+      <span class="wtag" data-i18n="w2g">✅ $500 Max Deductible</span>
     </div>
     <div class="wcard" data-anim="up" data-d="2">
       <div class="wicon"><i class="fa-solid fa-truck-fast"></i></div>
-      <h3 data-i18n="w3t">Free Door-to-Door Delivery</h3>
-      <p data-i18n="w3d">We deliver to any address in Miami-Dade — hotels, Airbnbs, MIA, FLL, and OPF airports — at zero extra charge.</p>
-      <span class="wtag" data-i18n="w3g">🚚 All Miami-Dade</span>
+      <h3 data-i18n="w3t">Personalized Delivery</h3>
+      <p data-i18n="w3d">We deliver directly to your hotel, Airbnb, MIA, FLL, MCO, Port of Miami, or Port Everglades — door-to-door service, no shuttles, no long walks.</p>
+      <span class="wtag" data-i18n="w3g">🚚 Free in Miami</span>
     </div>
     <div class="wcard" data-anim="up" data-d="3">
-      <div class="wicon"><i class="fa-solid fa-tag"></i></div>
-      <h3 data-i18n="w4t">100% Transparent Pricing</h3>
-      <p data-i18n="w4d">What you see is what you pay. Taxes, insurance, and delivery are always included. No mysterious fees at pickup.</p>
-      <span class="wtag" data-i18n="w4g">💰 No Hidden Fees</span>
+      <div class="wicon"><i class="fa-solid fa-road"></i></div>
+      <h3 data-i18n="w4t">Unlimited Mileage + Tolls Included</h3>
+      <p data-i18n="w4d">Drive as much as you want — no per-mile charges. And unlike most rentals, <strong>tolls are included</strong> in every reservation. No SunPass needed.</p>
+      <span class="wtag" data-i18n="w4g">🛣️ Drive Without Limits</span>
     </div>
     <div class="wcard" data-anim="up" data-d="4">
-      <div class="wicon"><i class="fa-solid fa-car-burst"></i></div>
-      <h3 data-i18n="w5t">New-Model Fleet Only</h3>
-      <p data-i18n="w5d">Every vehicle is 2022 or newer, fully sanitized and inspected before each rental. Always clean, always reliable.</p>
-      <span class="wtag" data-i18n="w5g">🏆 2022+ Models</span>
+      <div class="wicon"><i class="fa-solid fa-wifi"></i></div>
+      <h3 data-i18n="w5t">Wi-Fi Available on Request</h3>
+      <p data-i18n="w5d">Need to stay connected on the road? Ask about our portable Wi-Fi device — available as an optional add-on. Discuss pricing directly with us on WhatsApp.</p>
+      <span class="wtag" data-i18n="w5g">📦 Ask on WhatsApp</span>
     </div>
     <div class="wcard" data-anim="up" data-d="5">
       <div class="wicon"><i class="fa-solid fa-headset"></i></div>
@@ -701,18 +700,18 @@
     <div data-anim="right">
       <span class="slabel" data-i18n="atag">Service Area</span>
       <h2 class="stitle" data-i18n="atitle">We Cover All of Miami</h2>
-      <p class="ssub" data-i18n="asub">Whether you land at MIA or stay in Wynwood, we'll have your car waiting. Free delivery to every major neighborhood and all three airports.</p>
+      <p class="ssub" data-i18n="asub">Whether you land at MIA, FLL, or MCO, dock at Port of Miami or Port Everglades, or stay anywhere in Miami — we'll have your car ready. Free delivery throughout Miami.</p>
       <div class="alist">
         <div class="achip"><i class="fa-solid fa-plane-arrival"></i> Miami Airport (MIA)</div>
         <div class="achip"><i class="fa-solid fa-plane-arrival"></i> Fort Lauderdale (FLL)</div>
+        <div class="achip"><i class="fa-solid fa-plane-arrival"></i> Orlando Airport (MCO)</div>
+        <div class="achip"><i class="fa-solid fa-ship"></i> Port of Miami</div>
+        <div class="achip"><i class="fa-solid fa-ship"></i> Port Everglades</div>
         <div class="achip"><i class="fa-solid fa-location-dot"></i> South Beach</div>
         <div class="achip"><i class="fa-solid fa-location-dot"></i> Brickell</div>
         <div class="achip"><i class="fa-solid fa-location-dot"></i> Wynwood</div>
         <div class="achip"><i class="fa-solid fa-location-dot"></i> Coral Gables</div>
-        <div class="achip"><i class="fa-solid fa-location-dot"></i> Doral</div>
-        <div class="achip"><i class="fa-solid fa-location-dot"></i> Aventura</div>
         <div class="achip"><i class="fa-solid fa-location-dot"></i> Coconut Grove</div>
-        <div class="achip"><i class="fa-solid fa-location-dot"></i> Miami Beach</div>
       </div>
     </div>
     <div data-anim="left">
@@ -738,24 +737,24 @@
     </div>
     <div class="flist" data-anim="left">
       <div class="fitem">
-        <button class="fq" onclick="tFaq(this)"><span data-i18n="q1">Do you deliver to the airport?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a1">Yes! We deliver directly to MIA, FLL, and OPF at no extra charge. Just share your flight number and arrival time — we'll be waiting when you land, car fueled and ready.</div>
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q1">Do you deliver to airports and ports?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a1">Yes! We meet you at Miami Airport (MIA), Fort Lauderdale (FLL), Orlando Airport (MCO), Port of Miami, and Port Everglades. Just share your arrival details and we’ll have your car waiting when you get there.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q2">Is insurance included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a2">Absolutely. Every rental includes basic liability and collision coverage at no extra cost. We believe you should know exactly what you're paying for before you sign anything — no hidden add-ons at pickup.</div>
+        <div class="fa" data-i18n="a2">Yes. Every rental includes full collision and liability coverage with a <strong>$500 deductible</strong>. This means your maximum financial responsibility in case of any accident is capped at $500 — complete transparency before you sign anything.</div>
       </div>
       <div class="fitem">
-        <button class="fq" onclick="tFaq(this)"><span data-i18n="q3">Can I pay with cash?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a3">Yes, we accept cash (USD), Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days after the car is returned.</div>
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q3">What payment methods do you accept?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a3">We accept Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days after the car is returned. For other payment inquiries, chat with us on WhatsApp.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q4">Will someone assist us during our stay?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
         <div class="fa" data-i18n="a4">Always. Our team is available 24/7 via WhatsApp for the entire duration of your rental — whether it's a question about the car, a flat tire at 2am, or anything in between. You'll never be alone on the road.</div>
       </div>
       <div class="fitem">
-        <button class="fq" onclick="tFaq(this)"><span data-i18n="q5">Are tolls and mileage included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a5">Mileage is unlimited — drive as much as you want with no per-mile charges. Tolls are not included; you'll need a SunPass or pay cash at toll booths. We can help you set up a SunPass transponder if needed.</div>
+        <button class="fq" onclick="tFaq(this)"><span data-i18n="q5">Are mileage and tolls included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
+        <div class="fa" data-i18n="a5">Yes — both are included in every reservation. Drive as many miles as you like with no extra charges, and all tolls are covered. No SunPass needed, no surprise fees.</div>
       </div>
     </div>
   </div>
@@ -794,10 +793,9 @@
       <h5 data-i18n="ff">Our Fleet</h5>
       <ul>
         <li><a href="#fleet" data-i18n="catc">Compact Cars</a></li>
-        <li><a href="#fleet">SUVs</a></li>
-        <li><a href="#fleet" data-i18n="catl">Luxury Cars</a></li>
-        <li><a href="#fleet" data-i18n="cate">Electric Vehicles</a></li>
-        <li><a href="#fleet">Minivans</a></li>
+        <li><a href="#fleet" data-i18n="catsd">Sedans</a></li>
+        <li><a href="#fleet" data-i18n="catsuv">SUVs / Trucks</a></li>
+        <li><a href="#fleet" data-i18n="catmv">Minivans</a></li>
       </ul>
     </div>
     <div class="fcol">
@@ -817,7 +815,7 @@
         <li><i class="fa-solid fa-envelope"></i> ride&amp;gomiamirentalcar@gmail.com</li>
         <li><i class="fa-solid fa-location-dot"></i> 1950 NE 207th St, Miami FL 33179</li>
         <li><i class="fa-solid fa-clock"></i><span data-i18n="fhrs">24/7 Available</span></li>
-        <li><i class="fa-solid fa-plane"></i> MIA · FLL · OPF</li>
+        <li><i class="fa-solid fa-plane"></i> MIA · FLL · MCO · Port of Miami · Port Everglades</li>
       </ul>
     </div>
   </div>
@@ -846,49 +844,49 @@ en:{
   nav_how:"How It Works",nav_fleet:"Fleet",nav_why:"Why Us",nav_faq:"FAQ",nav_cta:"Book Now",
   eyebrow:"Miami Car Rental — 4.9★ on Google",
   h1a:"Rent a car",h1b:"in Miami today.",h1c:"",
-  hsub:"We drop it off at your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no lines, no paperwork.",
-  p1:"✓ Free delivery anywhere in Miami-Dade",p2:"✓ Full insurance always included",p3:"✓ Confirmed in under 5 minutes",p4:"",
+  hsub:"We deliver personally to your hotel, Airbnb, or airport. Text us on WhatsApp and we'll confirm in minutes — no lines, no paperwork.",
+  p1:"✓ Unlimited mileage + tolls included",p2:"✓ Full insurance – $500 deductible",p3:"✓ Personalized delivery to your hotel or Airbnb in Miami",p4:"",
   hcta1:"Book on WhatsApp",hcta2:"View Fleet",
   hrating:"4.9 on Google · 4,800+ rentals",
   tnum:"4,800+",tlbl:"happy customers this year",
   ftitle:"Get an Instant Quote",fsub:"Find your perfect car in seconds",
   llp:"Pickup",llt:"Vehicle Type",llf:"Pick-up Date",llt2:"Return Date",lld:"Additional Drivers",
-  ohotel:"My Hotel / Address",
-  ocompact:"Compact – from $45/day",oluxury:"Luxury – from $129/day",ominivan:"Minivan – from $95/day",oelectric:"Electric – from $89/day",
-  od1:"1 Driver (included)",od2:"2 Drivers (+$10/day)",od3:"3+ Drivers (+$15/day)",
+  ohotel:"My Hotel / Airbnb",
+  ocompact:"Compact – from $45/day",osedan:"Sedan – from $45/day",osuv:"SUV / Truck – from $65/day",ominivan:"Minivan – from $85/day",
+  od1:"1 Driver (included)",od2:"2 Drivers (included)",od3:"3rd+ Driver (+$15/day each)",
   bsearch:"Search Available Cars",fsec:"Secure · No credit card required · Free cancellation",
   blbl:"Our Fleet Includes",
   m1:"Happy Customers",m2:"Google Rating",m3:"Vehicles in Fleet",m4:"Years Serving Miami",
   rtitle:"Available Vehicles",rsub:"Tap \"Book\" to reserve instantly via WhatsApp",
   howtag:"How It Works",howtitle:"Rent in Miami in 3 Simple Steps",howsub:"No paperwork headaches. No long queues. Just message us and drive.",
-  s1t:"Pick Your Vehicle",s1d:"Browse our fleet or tell us what you need on WhatsApp. Compact, SUV, luxury, electric — all at transparent daily rates.",
+  s1t:"Pick Your Vehicle",s1d:"Browse our fleet or tell us what you need on WhatsApp. Compact, sedan, SUV, or minivan — all at transparent daily rates.",
   s2t:"Confirm in Minutes",s2d:"Message us with your dates and pickup location. Our team responds in under 5 minutes with your confirmed reservation.",
   s3t:"We Deliver, You Drive",s3d:"We bring the car to your hotel, Airbnb, or airport terminal. No shuttle, no extra stops — just keys in hand and the open road.",
   flttag:"Our Fleet",flttitle:"Every Car for Every Trip",fltcta:"See Full Fleet",
-  fc:"From $45/day",fs:"From $79/day",fl:"From $129/day",fe:"From $89/day",
-  catc:"Compact",catl:"Luxury",cate:"Electric",
-  ceg:"Toyota Corolla · Honda Civic",seg:"RAV4 · Explorer · Pilot",leg:"Mercedes · BMW · Audi",eeg:"Tesla Model 3 · Model Y",
+  fc:"From $45/day",fsd:"From $45/day",fs:"From $65/day",fm:"From $85/day",
+  catc:"Compact",catsd:"Sedan",catsuv:"SUV / Truck",catmv:"Minivan",
+  ceg:"Toyota Corolla · Honda Civic · 5 pax / 2 bags",sdeg:"Toyota Camry · Honda Accord · 5 pax / 3 bags",seg:"RAV4 · Explorer · Pilot · 5-7 pax / 4-5 bags",mveg:"Toyota Sienna · Chrysler Pacifica · 7-8 pax / 6 bags",
   whytag:"Why Ride & Go",whytitle:"The Miami Rental Experience You Deserve",whysub:"We built Ride & Go because renting a car should be as easy as sending a text message.",
   w1t:"Confirmed in 5 Minutes",w1d:"Send us a WhatsApp and our team responds immediately. No bots — a real person handles your reservation 24/7.",w1g:"⚡ Fastest in Miami",
-  w2t:"Full Insurance Included",w2d:"Every rental includes collision, liability, and roadside assistance. Drive completely worry-free — no surprises at checkout.",w2g:"✅ Zero Surprises",
-  w3t:"Free Door-to-Door Delivery",w3d:"We deliver to any address in Miami-Dade — hotels, Airbnbs, MIA, FLL, and OPF airports — at zero extra charge.",w3g:"🚚 All Miami-Dade",
-  w4t:"100% Transparent Pricing",w4d:"What you see is what you pay. Taxes, insurance, and delivery are always included. No mysterious fees at pickup.",w4g:"💰 No Hidden Fees",
-  w5t:"New-Model Fleet Only",w5d:"Every vehicle is 2022 or newer, fully sanitized and inspected before each rental. Always clean, always reliable.",w5g:"🏆 2022+ Models",
+  w2t:"Full Insurance Included",w2d:"Every rental includes full collision and liability coverage with a $500 deductible. Your maximum financial responsibility is always clear — no surprises at checkout.",w2g:"✅ $500 Max Deductible",
+  w3t:"Personalized Delivery",w3d:"We deliver to your hotel, Airbnb, MIA, FLL, MCO, Port of Miami, or Port Everglades — door-to-door service, no shuttles, no long walks.",w3g:"🚚 Free in Miami",
+  w4t:"Unlimited Mileage + Tolls Included",w4d:"Drive as much as you want — no per-mile charges. And unlike most rentals, tolls are included in every reservation. No SunPass needed.",w4g:"🛣️ Drive Without Limits",
+  w5t:"Wi-Fi Available on Request",w5d:"Need to stay connected on the road? Ask about our portable Wi-Fi device — available as an optional add-on. Discuss pricing directly with us on WhatsApp.",w5g:"📶 Ask on WhatsApp",
   w6t:"24/7 Human Support",w6d:"Flat tire at 2am? Fender bender on I-95? Our team is on WhatsApp around the clock. Real help, always.",w6g:"📞 Always Available",
   rtag:"Customer Reviews",rtitle2:"Don't Take Our Word for It",rsub2:"Over 4,800 customers have rented with us. Here's what a few of them say.",
   r1:'"I messaged at 10pm and had a confirmed Tesla delivered to my Brickell hotel by 9am. Spotless car, zero hassle. This is how car rental should work."',
   r2:'"Rented an Explorer for a week-long Keys road trip with the whole family. Great price and they picked it up from our hotel when we left. 100% will use again."',
   r3:'"BMW 5-series for a business trip. Immaculate condition. The driver was at MIA before I even got my luggage. Best rental experience I\'ve ever had, period."',
-  atag:"Service Area",atitle:"We Cover All of Miami",asub:"Whether you land at MIA or stay in Wynwood, we'll have your car waiting. Free delivery to every major neighborhood and all three airports.",
-  maptext:"Free delivery across all Miami-Dade County. Tell us where you are — we'll be there.",mapcta:"Confirm My Location",
+  atag:"Service Area",atitle:"We Cover All of Miami",asub:"Whether you land at MIA, FLL, or MCO, dock at Port of Miami or Port Everglades, or stay anywhere in Miami — we'll have your car ready. Free delivery throughout Miami.",
+  maptext:"Free delivery throughout Miami. Pickup & return at MIA, FLL, MCO, Port of Miami, and Port Everglades.",mapcta:"Confirm My Location",
   faqtitle:"Questions? We've Got Answers",faqsub:"Everything you need to know before booking your Miami rental.",
   faqstill:"Still have questions?",faqcp:"Our team is on WhatsApp 24/7. A real person answers in minutes — no bots.",faqcta:"Chat with Us",
-  q1:"Do you deliver to the airport?",a1:"Yes! We deliver directly to MIA, FLL, and OPF at no extra charge. Just share your flight number — we'll be waiting when you land.",
-  q2:"Is insurance included?",a2:"Absolutely. Every rental includes basic liability and collision coverage. No hidden add-ons at pickup — what you see is what you pay.",
-  q3:"Can I pay with cash?",a3:"Yes, we accept cash (USD), Zelle, Visa, Mastercard, and Amex. Refundable security deposit of $300–$500, returned within 3 business days.",
+  q1:"Do you deliver to airports and ports?",a1:"Yes! We meet you at Miami Airport (MIA), Fort Lauderdale (FLL), Orlando (MCO), Port of Miami, and Port Everglades. Just share your arrival details and we'll have your car waiting.",
+  q2:"Is insurance included?",a2:"Yes. Every rental includes full collision and liability coverage with a $500 deductible. Your maximum financial responsibility is capped — complete transparency before you sign anything.",
+  q3:"What payment methods do you accept?",a3:"We accept Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days. For other payment options, chat with us on WhatsApp.",
   q4:"Will someone assist us during our stay?",a4:"Always. Our team is on WhatsApp 24/7 for the entire duration of your rental. Flat tire at 2am? We've got you covered.",
-  q5:"Are tolls and mileage included?",a5:"Mileage is unlimited — no per-mile charges. Tolls are not included; you'll pay at booths or use a SunPass. We can help you set one up.",
-  promo_title:"Rent 7 days · Get 1 FREE",promo_sub:"Book any vehicle for a full week and we'll add an extra day at no charge. Ask us on WhatsApp.",promo_cta:"Claim This Deal",
+  q5:"Are mileage and tolls included?",a5:"Yes — both are included in every reservation. Drive as many miles as you like and all tolls are covered. No SunPass needed, no surprise extra charges.",
+  promo_title:"Long-Term Rental Deal",promo_sub:"Book any vehicle for 7+ days and unlock our best long-term rates. Ask about weekly and monthly discounts on WhatsApp.",promo_cta:"Get a Quote",
   ctah1:"Ready to Hit",ctah2:"Miami's Roads?",
   ctap:"Join 4,800+ travelers who chose Ride & Go. Message us on WhatsApp — your car will be confirmed in minutes.",
   ctawa:"Book on WhatsApp Now",ctanote:"Average response time: under 4 minutes · Available 24/7",
@@ -902,49 +900,49 @@ es:{
   nav_how:"Cómo Funciona",nav_fleet:"Flota",nav_why:"Por Qué Nosotros",nav_faq:"Preguntas",nav_cta:"Reservar",
   eyebrow:"4.9★ en Google · +4,800 clientes",
   h1a:"Renta un auto",h1b:"en Miami hoy.",h1c:"",
-  hsub:"Lo llevamos a tu hotel, Airbnb o aeropuerto. Escríbenos por WhatsApp y confirmamos en minutos — sin formularios, sin colas.",
-  p1:"✓ Entrega gratis en todo Miami-Dade",p2:"✓ Seguro completo siempre incluido",p3:"✓ Confirmación en menos de 5 minutos",p4:"",
+  hsub:"Te llevamos personalmente a tu hotel, Airbnb o aeropuerto. Escríbenos por WhatsApp y confirmamos en minutos — sin formularios, sin colas.",
+  p1:"✓ Kilometraje ilimitado + peajes incluidos",p2:"✓ Seguro completo – franquicia de $500",p3:"✓ Entrega personalizada en tu hotel o Airbnb en Miami",p4:"",
   hcta1:"Reservar por WhatsApp",hcta2:"Ver Flota",
   hrating:"4.9 en Google · más de 4,800 rentas",
   tnum:"4,800+",tlbl:"clientes felices este año",
   ftitle:"Cotización Instantánea",fsub:"Encuentra tu auto perfecto en segundos",
   llp:"Lugar de Recogida",llt:"Tipo de Vehículo",llf:"Fecha de Recogida",llt2:"Fecha de Devolución",lld:"Conductores Adicionales",
-  ohotel:"Mi Hotel / Dirección",
-  ocompact:"Compacto – desde $45/día",oluxury:"Lujo – desde $129/día",ominivan:"Minivan – desde $95/día",oelectric:"Eléctrico – desde $89/día",
-  od1:"1 Conductor (incluido)",od2:"2 Conductores (+$10/día)",od3:"3+ Conductores (+$15/día)",
+  ohotel:"Mi Hotel / Airbnb",
+  ocompact:"Compacto – desde $45/día",osedan:"Sedán – desde $45/día",osuv:"SUV / Camioneta – desde $65/día",ominivan:"Minivan – desde $85/día",
+  od1:"1 Conductor (incluido)",od2:"2 Conductores (incluidos)",od3:"3er+ Conductor (+$15/día c/u)",
   bsearch:"Buscar Autos Disponibles",fsec:"Seguro · Sin tarjeta requerida · Cancelación gratuita",
   blbl:"Nuestra Flota Incluye",
   m1:"Clientes Felices",m2:"Calificación Google",m3:"Vehículos en Flota",m4:"Años en Miami",
   rtitle:"Vehículos Disponibles",rsub:"Toca \"Reservar\" para confirmar por WhatsApp",
   howtag:"Cómo Funciona",howtitle:"Renta en Miami en 3 Pasos Simples",howsub:"Sin papeleo complicado. Sin filas largas. Solo escríbenos y maneja.",
-  s1t:"Elige Tu Vehículo",s1d:"Explora nuestra flota o cuéntanos qué necesitas por WhatsApp. Compacto, SUV, lujo, eléctrico — todo a precios transparentes.",
+  s1t:"Elige Tu Vehículo",s1d:"Explora nuestra flota o cuéntanos qué necesitas por WhatsApp. Compacto, sedán, SUV o minivan — todo a precios transparentes.",
   s2t:"Confirmación en Minutos",s2d:"Escríbenos con tus fechas y lugar de recogida. Respondemos en menos de 5 minutos con tu reserva confirmada.",
   s3t:"Nosotros Entregamos",s3d:"Llevamos el auto a tu hotel, Airbnb o aeropuerto. Sin shuttle, sin paradas extra — solo las llaves y la carretera.",
   flttag:"Nuestra Flota",flttitle:"Un Auto para Cada Viaje",fltcta:"Ver Flota Completa",
-  fc:"Desde $45/día",fs:"Desde $79/día",fl:"Desde $129/día",fe:"Desde $89/día",
-  catc:"Compacto",catl:"Lujo",cate:"Eléctrico",
-  ceg:"Toyota Corolla · Honda Civic",seg:"RAV4 · Explorer · Pilot",leg:"Mercedes · BMW · Audi",eeg:"Tesla Model 3 · Model Y",
+  fc:"Desde $45/día",fsd:"Desde $45/día",fs:"Desde $65/día",fm:"Desde $85/día",
+  catc:"Compacto",catsd:"Sedán",catsuv:"SUV / Camioneta",catmv:"Minivan",
+  ceg:"Toyota Corolla · Honda Civic · 5 pax / 2 maletas",sdeg:"Toyota Camry · Honda Accord · 5 pax / 3 maletas",seg:"RAV4 · Explorer · Pilot · 5-7 pax / 4-5 maletas",mveg:"Toyota Sienna · Chrysler Pacifica · 7-8 pax / 6 maletas",
   whytag:"Por Qué Ride & Go",whytitle:"La Experiencia de Renta que Mereces",whysub:"Creamos Ride & Go porque rentar un auto debería ser tan fácil como enviar un mensaje de texto.",
   w1t:"Confirmado en 5 Minutos",w1d:"Escríbenos y nuestro equipo responde de inmediato. Sin bots — una persona real gestiona tu reserva las 24 horas.",w1g:"⚡ Los Más Rápidos",
-  w2t:"Seguro Completo Incluido",w2d:"Cada renta incluye colisión, responsabilidad civil y asistencia en carretera. Maneja sin preocupaciones.",w2g:"✅ Sin Sorpresas",
-  w3t:"Entrega Gratis a Domicilio",w3d:"Entregamos en cualquier dirección del Condado Miami-Dade — hoteles, Airbnbs y los tres aeropuertos — sin costo adicional.",w3g:"🚚 Todo Miami-Dade",
-  w4t:"Precios 100% Transparentes",w4d:"Lo que ves es lo que pagas. Impuestos, seguro y entrega siempre incluidos. Sin cargos misteriosos.",w4g:"💰 Sin Costos Ocultos",
-  w5t:"Solo Modelos Nuevos",w5d:"Todos los vehículos son modelo 2022 o más nuevos, completamente sanitizados e inspeccionados antes de cada renta.",w5g:"🏆 Solo Modelos 2022+",
+  w2t:"Seguro Completo Incluido",w2d:"Cada renta incluye cobertura completa de colisión y responsabilidad civil con una franquicia de $500. Tu responsabilidad máxima siempre está clara — sin sorpresas.",w2g:"✅ Franquicia $500",
+  w3t:"Entrega Personalizada Gratis",w3d:"Entregamos en tu hotel, Airbnb, MIA, FLL, MCO, Puerto de Miami o Port Everglades — servicio puerta a puerta, sin shuttles ni caminatas largas.",w3g:"🚚 Gratis en Miami",
+  w4t:"Kilometraje Ilimitado + Peajes Incluidos",w4d:"Manejá todo lo que quieras sin cargos por kilómetro. Y a diferencia de otras rentas, los peajes están incluidos en cada reserva. Sin necesidad de SunPass.",w4g:"🛣️ Manejá Sin Límites",
+  w5t:"Wi-Fi Disponible a Pedido",w5d:"¿Necesitás estar conectado? Preguntá por nuestro dispositivo Wi-Fi portátil — disponible como add-on. Discutí el precio directamente por WhatsApp.",w5g:"📶 Consultá por WhatsApp",
   w6t:"Soporte Humano 24/7",w6d:"¿Llanta ponchada a las 2am? Nuestro equipo está en WhatsApp las 24 horas. Asistencia en carretera siempre disponible.",w6g:"📞 Siempre Disponible",
   rtag:"Reseñas de Clientes",rtitle2:"No Te Fíes Solo de Nosotros",rsub2:"Más de 4,800 clientes han rentado con nosotros. Esto es lo que dicen.",
   r1:'"Les escribí a las 10pm y tenía un Tesla confirmado entregado en mi hotel de Brickell a las 9am. Auto impecable, sin papeleo. Así debería funcionar siempre."',
   r2:'"Renté un Explorer para un viaje familiar a los Keys. Gran precio y lo recogieron del hotel cuando terminamos. Al 100% lo usaré en mi próximo viaje."',
   r3:'"BMW Serie 5 para viaje de negocios. Impecable. El conductor estaba en MIA antes de que yo recogiera mi equipaje. La mejor experiencia de renta que he tenido."',
-  atag:"Área de Servicio",atitle:"Cubrimos Todo Miami",asub:"Ya sea que aterrices en MIA o te quedes en Wynwood, tendremos tu auto esperándote. Entrega gratis en cada barrio principal y los tres aeropuertos.",
-  maptext:"Entrega gratis en todo el Condado Miami-Dade. Dinos dónde estás — estaremos ahí.",mapcta:"Confirmar Mi Ubicación",
+  atag:"Área de Servicio",atitle:"Cubrimos Todo Miami",asub:"Ya sea que aterrices en MIA, FLL o MCO, llegues por el Puerto de Miami o Port Everglades, o te alojes en cualquier lugar de Miami — tendremos tu auto listo. Entrega gratis en todo Miami.",
+  maptext:"Entrega gratis en todo Miami. Retiro y devolución en MIA, FLL, MCO, Puerto de Miami y Port Everglades.",mapcta:"Confirmar Mi Ubicación",
   faqtitle:"¿Preguntas? Tenemos Respuestas",faqsub:"Todo lo que necesitas saber antes de reservar tu renta en Miami.",
   faqstill:"¿Aún tienes preguntas?",faqcp:"Nuestro equipo está en WhatsApp 24/7. Una persona real te responde en minutos — sin bots.",faqcta:"Chatea con Nosotros",
-  q1:"¿Se entrega en el aeropuerto?",a1:"¡Sí! Entregamos directamente en MIA, FLL y OPF sin costo adicional. Solo comparte tu número de vuelo y llegada — estaremos esperándote.",
-  q2:"¿Tienen seguros?",a2:"Sí. Cada renta incluye seguro básico de responsabilidad civil y colisión incluido. Sin sorpresas al momento del pickup — lo que ves es lo que pagas.",
-  q3:"¿Se puede pagar en efectivo?",a3:"Sí, aceptamos efectivo (USD), Zelle, Visa, Mastercard y Amex. Se requiere depósito reembolsable de $300–$500, devuelto en 3 días hábiles.",
+  q1:"¿Se entrega en aeropuertos y puertos?",a1:"¡Sí! Te encontramos en el Aeropuerto de Miami (MIA), Fort Lauderdale (FLL), Orlando (MCO), Puerto de Miami y Port Everglades. Compartí tu llegada y tendremos el auto listo.",
+  q2:"¿Incluyen seguro?",a2:"Sí. Cada renta incluye cobertura completa de colisión y responsabilidad civil con una franquicia de $500. Tu responsabilidad máxima está claramente definida — sin sorpresas en el pickup.",
+  q3:"¿Qué métodos de pago aceptan?",a3:"Aceptamos Zelle, Visa, Mastercard y Amex. Se requiere un depósito reembolsable de $300–$500, devuelto en 3 días hábiles. Para otras opciones de pago, contáctanos por WhatsApp.",
   q4:"¿Alguien nos ayudará durante la estadía?",a4:"Siempre. Nuestro equipo está disponible 24/7 por WhatsApp durante toda tu renta. ¿Llanta pinchada a las 2am? Estamos para ayudarte.",
-  q5:"¿Incluyen peajes y millas?",a5:"Las millas son ilimitadas — sin cargos por kilómetro. Los peajes no están incluidos; los pagas en las casetas o con SunPass. Te ayudamos a configurarlo si lo necesitas.",
-  promo_title:"Renta 7 días · ¡1 GRATIS!",promo_sub:"Reserva cualquier vehículo por una semana completa y te agregamos un día extra sin costo. Pregúntanos por WhatsApp.",promo_cta:"Obtener Esta Oferta",
+  q5:"¿Incluyen peajes y kilometraje?",a5:"Sí — ambos están incluidos en cada reserva. Manejá todo lo que quieras y todos los peajes están cubiertos. Sin necesidad de SunPass, sin cargos extra sorpresa.",
+  promo_title:"Descuento por Larga Duración",promo_sub:"Reservá cualquier vehículo por 7 días o más y accedé a nuestras mejores tarifas semanales y mensuales. Preguntá por WhatsApp.",promo_cta:"Obtener Cotización",
   ctah1:"¿Listo para Recorrer",ctah2:"las Calles de Miami?",
   ctap:"Únete a más de 4,800 viajeros que eligieron Ride & Go. Escríbenos por WhatsApp — tu auto estará confirmado en minutos.",
   ctawa:"Reservar por WhatsApp Ahora",ctanote:"Tiempo de respuesta: menos de 4 minutos · Disponible 24/7",
@@ -959,23 +957,19 @@ es:{
 const CARS={
 compact:[
   {name:"Toyota Corolla",year:"2024",img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=640&h=370&fit=crop",price:45,pax:5,bags:2,trans:"Auto",mpg:"32 mpg"},
-  {name:"Honda Civic",year:"2023",img:"https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=640&h=370&fit=crop",price:49,pax:5,bags:2,trans:"Auto",mpg:"36 mpg"}
+  {name:"Honda Civic",year:"2024",img:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=640&h=370&fit=crop",price:45,pax:5,bags:2,trans:"Auto",mpg:"36 mpg"}
+],
+sedan:[
+  {name:"Toyota Camry",year:"2024",img:"https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=640&h=370&fit=crop",price:45,pax:5,bags:3,trans:"Auto",mpg:"32 mpg"},
+  {name:"Honda Accord",year:"2024",img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=640&h=370&fit=crop",price:49,pax:5,bags:3,trans:"Auto",mpg:"33 mpg"}
 ],
 suv:[
-  {name:"Toyota RAV4",year:"2024",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=640&h=370&fit=crop",price:79,pax:5,bags:4,trans:"Auto",mpg:"28 mpg"},
-  {name:"Ford Explorer",year:"2024",img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&h=370&fit=crop",price:89,pax:7,bags:5,trans:"Auto",mpg:"24 mpg"}
-],
-luxury:[
-  {name:"Mercedes-Benz C-Class",year:"2024",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=640&h=370&fit=crop",price:129,pax:5,bags:3,trans:"Auto",mpg:"29 mpg"},
-  {name:"BMW 5 Series",year:"2024",img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?w=640&h=370&fit=crop",price:149,pax:5,bags:3,trans:"Auto",mpg:"27 mpg"}
+  {name:"Toyota RAV4",year:"2024",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=640&h=370&fit=crop",price:65,pax:5,bags:4,trans:"Auto",mpg:"28 mpg"},
+  {name:"Ford Explorer",year:"2024",img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&h=370&fit=crop",price:75,pax:7,bags:5,trans:"Auto",mpg:"24 mpg"}
 ],
 minivan:[
-  {name:"Toyota Sienna",year:"2024",img:"https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=640&h=370&fit=crop",price:95,pax:8,bags:6,trans:"Auto",mpg:"35 mpg"},
-  {name:"Chrysler Pacifica",year:"2023",img:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=640&h=370&fit=crop",price:99,pax:7,bags:6,trans:"Auto",mpg:"28 mpg"}
-],
-electric:[
-  {name:"Tesla Model 3",year:"2024",img:"https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=640&h=370&fit=crop",price:89,pax:5,bags:3,trans:"Auto",mpg:"358mi range"},
-  {name:"Tesla Model Y",year:"2024",img:"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=640&h=370&fit=crop",price:109,pax:5,bags:4,trans:"Auto",mpg:"330mi range"}
+  {name:"Toyota Sienna",year:"2024",img:"https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=640&h=370&fit=crop",price:85,pax:8,bags:6,trans:"Auto",mpg:"35 mpg"},
+  {name:"Chrysler Pacifica",year:"2024",img:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=640&h=370&fit=crop",price:89,pax:7,bags:6,trans:"Auto",mpg:"28 mpg"}
 ]
 };
 
@@ -1002,10 +996,28 @@ function setLang(l){
   });
 }
 
+function searchToWhatsApp(){
+  const typeEl=document.getElementById('fType');
+  const type=typeEl.options[typeEl.selectedIndex].text;
+  const pickupEl=document.getElementById('fPickup');
+  const pickup=pickupEl.options[pickupEl.selectedIndex].text;
+  const from=document.getElementById('fFrom').value;
+  const to=document.getElementById('fTo').value;
+  const driversEl=document.getElementById('fDrivers');
+  const drivers=driversEl.options[driversEl.selectedIndex].text;
+  let msg;
+  if(lang==='es'){
+    msg=`Hola! Quiero consultar disponibilidad:\n- Categoría: ${type}\n- Lugar de recogida: ${pickup}\n- Retiro: ${from||'a confirmar'}\n- Devolución: ${to||'a confirmar'}\n- Conductores: ${drivers}`;
+  } else {
+    msg=`Hi! I'd like to check availability:\n- Category: ${type}\n- Pickup: ${pickup}\n- Pick-up date: ${from||'TBD'}\n- Return date: ${to||'TBD'}\n- Drivers: ${drivers}`;
+  }
+  window.open('https://wa.me/17867282882?text='+encodeURIComponent(msg),'_blank');
+}
+
 function showResults(){
   const type=document.getElementById('fType').value;
   const l=lang;
-  const cats={compact:l==='es'?'Compacto':'Compact',suv:'SUV',luxury:l==='es'?'Lujo':'Luxury',minivan:'Minivan',electric:l==='es'?'Eléctrico':'Electric'};
+  const cats={compact:l==='es'?'Compacto':'Compact',sedan:l==='es'?'Sedán':'Sedan',suv:l==='es'?'SUV / Camioneta':'SUV / Truck',minivan:'Minivan'};
   const grid=document.getElementById('carsGrid');
   grid.innerHTML='';
   (CARS[type]||[]).forEach(c=>{
@@ -1079,6 +1091,16 @@ document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 })();
 
 setTimeout(()=>{const t=document.getElementById('waTip');if(t)t.style.display='none';},5000);
+
+/* ── DAY / NIGHT HERO BACKGROUND ── */
+(function(){
+  const h=new Date().getHours();
+  const isNight=(h>=19||h<6);
+  if(isNight){
+    const hp=document.querySelector('.hero-photo');
+    if(hp) hp.style.backgroundImage="url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1900&h=1100&fit=crop&crop=center')";
+  }
+})();
 
 /* ── COOKIE BANNER ── */
 (function(){
