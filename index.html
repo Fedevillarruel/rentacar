@@ -53,7 +53,7 @@
 
   /* HERO */
   .hero{min-height:100vh;display:flex;align-items:center;padding:100px 6% 80px;position:relative;overflow:hidden;background:var(--bg);}
-  .hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=1900&h=1100&fit=crop&crop=center') center/cover no-repeat;pointer-events:none;}
+  .hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1900&h=1100&fit=crop&crop=center') center/cover no-repeat;pointer-events:none;}
   .hero-photo.night{background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1900&h=1100&fit=crop&crop=center');}
   .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,12,16,.93) 0%,rgba(9,12,16,.7) 50%,rgba(9,12,16,.4) 100%);}
   .hero-inner{max-width:1260px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center;position:relative;z-index:1;}
@@ -230,8 +230,8 @@
   .fq .fic{width:26px;height:26px;flex-shrink:0;background:var(--red-glow);border-radius:6px;display:flex;align-items:center;justify-content:center;}
   .fq .fic i{color:var(--red);font-size:.68rem;transition:.3s;}
   .fq.fqopen .fic i{transform:rotate(180deg);}
-  .fa{display:none;padding:0 22px 18px;font-size:.87rem;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);padding-top:14px;}
-  .fa.faopen{display:block;}
+  .fans{display:none;padding:0 22px 20px 22px;font-size:.92rem;font-family:'Inter',sans-serif;font-weight:400;color:#444;line-height:1.8;border-top:1px solid var(--border);padding-top:16px;letter-spacing:0;text-transform:none;}
+  .fans.faopen{display:block;}
 
   /* CTA */
   .cta-sec{padding:100px 6%;position:relative;overflow:hidden;background:var(--red);text-align:center;}
@@ -322,6 +322,13 @@
     .metrics-inner{grid-template-columns:1fr 1fr;}
     nav,section,.how,.fleet,.why,.testi,.areas,.faq,.cta-sec,.brands,.metrics{padding-left:4% !important;padding-right:4% !important;}
   }
+  /* MIAMI GALLERY */
+  .miami-gallery{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;height:300px;overflow:hidden;gap:0;}
+  .miami-gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease;filter:brightness(.9);}
+  .miami-gallery img:hover{transform:scale(1.05);filter:brightness(1);}
+  @media(max-width:900px){.miami-gallery{grid-template-columns:1fr 1fr;height:400px;}}
+  @media(max-width:560px){.miami-gallery{grid-template-columns:1fr;height:260px;}.miami-gallery img:not(:first-child){display:none;}}
+
   /* COOKIE BANNER */
   #cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 20px 20px;pointer-events:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;}
   #cookieBanner.cookieShow{opacity:1;transform:translateY(0);pointer-events:auto;}
@@ -346,7 +353,7 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo">
-    <img src="logo.png" alt="Ride & Go" class="logo-img"/>
+    <img src="logo-car.png" alt="Ride & Go" class="logo-img"/>
   </a>
   <ul class="nav-links">
     <li><a href="#how" data-i18n="nav_how">How It Works</a></li>
@@ -648,6 +655,14 @@
   </div>
 </section>
 
+<!-- MIAMI GALLERY -->
+<section class="miami-gallery">
+  <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop&crop=center" alt="Miami Beach"/>
+  <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=600&fit=crop&crop=center" alt="Miami Skyline"/>
+  <img src="https://images.unsplash.com/photo-1565329921943-7e537b7a5d1e?w=800&h=600&fit=crop&crop=center" alt="South Beach"/>
+  <img src="https://images.unsplash.com/photo-1481026469463-66327c86e544?w=800&h=600&fit=crop&crop=center" alt="Miami Streets"/>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testi" id="reviews">
   <div class="testi-hdr">
@@ -739,23 +754,23 @@
     <div class="flist" data-anim="left">
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q1">Do you deliver to airports and ports?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a1">Yes! We meet you at Miami Airport (MIA), Fort Lauderdale (FLL), Orlando Airport (MCO), Port of Miami, and Port Everglades. Just share your arrival details and we’ll have your car waiting when you get there.</div>
+        <div class="fans" data-i18n="a1">Yes! We meet you at Miami Airport (MIA), Fort Lauderdale (FLL), Orlando Airport (MCO), Port of Miami, and Port Everglades. Just share your arrival details and we’ll have your car waiting when you get there.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q2">Is insurance included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a2">Yes. Every rental includes full collision and liability coverage with a <strong>$500 deductible</strong>. This means your maximum financial responsibility in case of any accident is capped at $500 — complete transparency before you sign anything.</div>
+        <div class="fans" data-i18n="a2">Yes. Every rental includes full collision and liability coverage with a <strong>$500 deductible</strong>. This means your maximum financial responsibility in case of any accident is capped at $500 — complete transparency before you sign anything.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q3">What payment methods do you accept?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a3">We accept Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days after the car is returned. For other payment inquiries, chat with us on WhatsApp.</div>
+        <div class="fans" data-i18n="a3">We accept Zelle, Visa, Mastercard, and Amex. A refundable security deposit of $300–$500 is required, returned within 3 business days after the car is returned. For other payment inquiries, chat with us on WhatsApp.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q4">Will someone assist us during our stay?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a4">Always. Our team is available 24/7 via WhatsApp for the entire duration of your rental — whether it's a question about the car, a flat tire at 2am, or anything in between. You'll never be alone on the road.</div>
+        <div class="fans" data-i18n="a4">Always. Our team is available 24/7 via WhatsApp for the entire duration of your rental — whether it's a question about the car, a flat tire at 2am, or anything in between. You'll never be alone on the road.</div>
       </div>
       <div class="fitem">
         <button class="fq" onclick="tFaq(this)"><span data-i18n="q5">Are mileage and tolls included?</span><div class="fic"><i class="fa-solid fa-chevron-down"></i></div></button>
-        <div class="fa" data-i18n="a5">Yes — both are included in every reservation. Drive as many miles as you like with no extra charges, and all tolls are covered. No SunPass needed, no surprise fees.</div>
+        <div class="fans" data-i18n="a5">Yes — both are included in every reservation. Drive as many miles as you like with no extra charges, and all tolls are covered. No SunPass needed, no surprise fees.</div>
       </div>
     </div>
   </div>
@@ -1059,7 +1074,7 @@ function bookCar(name,price){
 function tFaq(btn){
   const a=btn.nextElementSibling;
   const open=a.classList.contains('faopen');
-  document.querySelectorAll('.fa.faopen').forEach(x=>x.classList.remove('faopen'));
+  document.querySelectorAll('.fans.faopen').forEach(x=>x.classList.remove('faopen'));
   document.querySelectorAll('.fq.fqopen').forEach(x=>x.classList.remove('fqopen'));
   document.querySelectorAll('.fitem.fopen').forEach(x=>x.classList.remove('fopen'));
   if(!open){a.classList.add('faopen');btn.classList.add('fqopen');btn.closest('.fitem').classList.add('fopen');}
