@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Ride &amp; Go – Premium Car Rental Miami</title>
   <meta name="description" content="Miami's #1 car rental. Free delivery to your hotel, airport or Airbnb. Book in seconds via WhatsApp. No hidden fees."/>
   <link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
@@ -162,6 +162,20 @@
   .how-badge i{font-size:1.5rem;color:var(--green);}
   .how-badge strong{font-size:.88rem;font-weight:700;display:block;margin-bottom:2px;color:#0d0d0d;}
   .how-badge span{font-size:.76rem;color:var(--muted);}
+
+  /* MIAMI DAYLINE */
+  .miami-dayline{padding:76px 6%;background:#fff;}
+  .miami-dayline-in{max-width:1260px;margin:0 auto;}
+  .miami-dayline-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:24px;}
+  .miami-dayline-head p{font-size:.86rem;color:var(--muted);max-width:560px;line-height:1.7;}
+  .miami-day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .miami-shot{position:relative;border-radius:var(--r);overflow:hidden;min-height:230px;border:1px solid var(--border);box-shadow:var(--sh);}
+  .miami-shot img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease,filter .35s ease;filter:saturate(1.05);}
+  .miami-shot::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.1) 55%,transparent 100%);}
+  .miami-shot:hover img{transform:scale(1.06);filter:saturate(1.15);}
+  .miami-cap{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;}
+  .miami-cap strong{display:block;font-size:.92rem;font-weight:800;}
+  .miami-cap span{font-size:.75rem;color:rgba(255,255,255,.78);}
 
   /* FLEET */
   .fleet{background:#f7f7f7;padding:96px 6%;}
@@ -332,6 +346,10 @@
   }
   @media(max-width:900px){
     .metrics-inner{grid-template-columns:1fr 1fr;}
+    .hero-inner{gap:34px;}
+    .qcard{max-width:100%;}
+    .miami-day-grid{grid-template-columns:1fr 1fr;}
+    .miami-gallery-grid{grid-template-columns:1fr 1fr;}
     .mbox:nth-child(1){border-radius:var(--r) 0 0 0;}
     .mbox:nth-child(2){border-radius:0 var(--r) 0 0;}
     .mbox:nth-child(3){border-radius:0 0 0 var(--r);}
@@ -347,6 +365,7 @@
     .wgrid,.tgrid{grid-template-columns:1fr;}
     .fgrid-fleet,.fgrid{grid-template-columns:1fr 1fr;}
     .alist{grid-template-columns:1fr 1fr;}
+    .hero{padding-top:86px;}
     .hero-btns{flex-direction:column;}
     .cta-btns{flex-direction:column;align-items:center;}
     .bi{gap:16px;}
@@ -354,13 +373,21 @@
     nav,section,.how,.fleet,.why,.testi,.areas,.faq,.cta-sec,.brands,.metrics{padding-left:4% !important;padding-right:4% !important;}
     .fi .fi-nav{width:28px;height:28px;}
     .fi .fi-counter{font-size:.62rem;}
+    .miami-dayline,.miami-gallery{padding-top:56px;padding-bottom:56px;}
+    .miami-day-grid{grid-template-columns:1fr;gap:12px;}
+    .miami-shot{min-height:220px;}
+    .miami-gallery-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:4px;}
+    .miami-gallery-item{min-width:78vw;min-height:230px;scroll-snap-align:start;}
   }
   /* MIAMI GALLERY */
-  .miami-gallery{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;height:300px;overflow:hidden;gap:0;}
-  .miami-gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease;filter:brightness(.9);}
-  .miami-gallery img:hover{transform:scale(1.05);filter:brightness(1);}
-  @media(max-width:900px){.miami-gallery{grid-template-columns:1fr 1fr;height:400px;}}
-  @media(max-width:560px){.miami-gallery{grid-template-columns:1fr;height:260px;}.miami-gallery img:not(:first-child){display:none;}}
+  .miami-gallery{padding:80px 6%;background:#f7f7f7;}
+  .miami-gallery-in{max-width:1260px;margin:0 auto;}
+  .miami-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .miami-gallery-item{position:relative;overflow:hidden;border-radius:var(--r);min-height:250px;border:1px solid var(--border);}
+  .miami-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .35s ease;filter:contrast(1.02) saturate(1.06);}
+  .miami-gallery-item:hover img{transform:scale(1.06);filter:contrast(1.1) saturate(1.15);}
+  .miami-gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.58) 0%,transparent 58%);}
+  .miami-gallery-note{position:absolute;left:14px;bottom:12px;z-index:2;font-size:.78rem;font-weight:700;letter-spacing:.2px;color:#fff;}
 
   /* COOKIE BANNER */
   #cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 20px 20px;pointer-events:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;}
@@ -584,6 +611,33 @@
   </div>
 </section>
 
+<!-- MIAMI BY DAY -->
+<section class="miami-dayline">
+  <div class="miami-dayline-in">
+    <div class="miami-dayline-head">
+      <div>
+        <span class="slabel">Miami by Day</span>
+        <h2 class="stitle">Sun, Beach &amp; City Vibes</h2>
+      </div>
+      <p>From South Beach mornings to skyline sunsets, your rental is the easiest way to move between Miami's best daytime spots.</p>
+    </div>
+    <div class="miami-day-grid">
+      <article class="miami-shot" data-anim="up">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=900&fit=crop&crop=center" alt="Sunny Miami beach with clear water" loading="lazy"/>
+        <div class="miami-cap"><strong>South Beach</strong><span>Crystal water and daytime coast drives</span></div>
+      </article>
+      <article class="miami-shot" data-anim="up" data-d="1">
+        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&h=900&fit=crop&crop=center" alt="Ocean Drive in Miami during day" loading="lazy"/>
+        <div class="miami-cap"><strong>Ocean Drive</strong><span>Art deco blocks, palms and iconic corners</span></div>
+      </article>
+      <article class="miami-shot" data-anim="up" data-d="2">
+        <img src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=1200&h=900&fit=crop&crop=center" alt="Miami skyline in daylight" loading="lazy"/>
+        <div class="miami-cap"><strong>Brickell Views</strong><span>Skyline routes and bayfront avenues</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- FLEET -->
 <section class="fleet" id="fleet">
   <div class="fleet-hdr">
@@ -691,10 +745,40 @@
 
 <!-- MIAMI GALLERY -->
 <section class="miami-gallery">
-  <img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=800&h=600&fit=crop&crop=center" alt="South Beach Miami"/>
-  <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&h=600&fit=crop&crop=center" alt="Miami Skyline Brickell"/>
-  <img src="https://images.unsplash.com/photo-1512936702668-1ab037aced2a?w=800&h=600&fit=crop&crop=center" alt="South Beach Miami Lifeguard Stand"/>
-  <img src="https://images.unsplash.com/photo-1521245585918-35fd32bf376f?w=800&h=600&fit=crop&crop=center" alt="Miami Beach Aerial View"/>
+  <div class="miami-gallery-in">
+    <div class="fleet-hdr" style="margin-bottom:26px;">
+      <div>
+        <span class="slabel">Explore Miami</span>
+        <h2 class="stitle">More Daylight Spots Across the City</h2>
+      </div>
+    </div>
+    <div class="miami-gallery-grid">
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1000&h=800&fit=crop&crop=center" alt="Daytime beach road in Miami" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Beach Drives</figcaption>
+      </figure>
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1517949908116-72169db9f3ea?w=1000&h=800&fit=crop&crop=center" alt="Miami beach palm trees during day" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Palm-Lined Streets</figcaption>
+      </figure>
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1000&h=800&fit=crop&crop=center" alt="South Beach lifeguard tower with blue sky" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Iconic Lifeguard Towers</figcaption>
+      </figure>
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1000&h=800&fit=crop&crop=center" alt="Aerial Miami coastline in daylight" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Coastline Views</figcaption>
+      </figure>
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1569701813229-33284b643e3c?w=1000&h=800&fit=crop&crop=center" alt="Miami city and ocean horizon on sunny day" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Bay + Skyline</figcaption>
+      </figure>
+      <figure class="miami-gallery-item">
+        <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1000&h=800&fit=crop&crop=center" alt="Oceanfront avenue with Miami traffic" loading="lazy"/>
+        <figcaption class="miami-gallery-note">Sunny City Routes</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -889,6 +973,22 @@
 </a>
 
 <script>
+/* Ensure mobile browsers don't render a desktop-width layout viewport. */
+(function ensureMobileViewport(){
+  const screenW=Math.min(window.screen?.width||0,window.screen?.height||0);
+  const looksLikePhone=screenW>0&&screenW<=500;
+  const hasDesktopViewport=window.innerWidth>600;
+  if(!looksLikePhone||!hasDesktopViewport)return;
+
+  let viewportMeta=document.querySelector('meta[name="viewport"]');
+  if(!viewportMeta){
+    viewportMeta=document.createElement('meta');
+    viewportMeta.setAttribute('name','viewport');
+    document.head.appendChild(viewportMeta);
+  }
+  viewportMeta.setAttribute('content','width=device-width, initial-scale=1.0, viewport-fit=cover');
+})();
+
 const T={
 en:{
   nav_how:"How It Works",nav_fleet:"Fleet",nav_why:"Why Us",nav_faq:"FAQ",nav_cta:"Book Now",
@@ -1322,14 +1422,17 @@ document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 
 setTimeout(()=>{const t=document.getElementById('waTip');if(t)t.style.display='none';},5000);
 
-/* ── DAY / NIGHT HERO BACKGROUND ── */
+/* Keep hero imagery in daytime Miami style. */
 (function(){
-  const h=new Date().getHours();
-  const isNight=(h>=19||h<6);
-  if(isNight){
-    const hp=document.querySelector('.hero-photo');
-    if(hp) hp.style.backgroundImage="url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1900&h=1100&fit=crop&crop=center')";
-  }
+  const heroDayShots=[
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1900&h=1100&fit=crop&crop=center',
+    'https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=1900&h=1100&fit=crop&crop=center',
+    'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1900&h=1100&fit=crop&crop=center'
+  ];
+  const hp=document.querySelector('.hero-photo');
+  if(!hp)return;
+  const dayIndex=Math.floor(Date.now()/86400000)%heroDayShots.length;
+  hp.style.backgroundImage=`url('${heroDayShots[dayIndex]}')`;
 })();
 
 /* ── COOKIE BANNER ── */
