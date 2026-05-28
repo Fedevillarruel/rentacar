@@ -377,13 +377,13 @@
     .miami-day-grid{grid-template-columns:1fr;gap:12px;}
     .miami-shot{min-height:220px;}
     .miami-gallery-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:4px;}
-    .miami-gallery-item{min-width:78vw;min-height:230px;scroll-snap-align:start;}
+    .miami-gallery-item{min-width:78vw;aspect-ratio:5/4;scroll-snap-align:start;}
   }
   /* MIAMI GALLERY */
   .miami-gallery{padding:80px 6%;background:#f7f7f7;}
   .miami-gallery-in{max-width:1260px;margin:0 auto;}
   .miami-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .miami-gallery-item{position:relative;overflow:hidden;border-radius:var(--r);min-height:250px;border:1px solid var(--border);}
+  .miami-gallery-item{position:relative;overflow:hidden;border-radius:var(--r);aspect-ratio:5/4;border:1px solid var(--border);}
   .miami-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .35s ease;filter:contrast(1.02) saturate(1.06);}
   .miami-gallery-item:hover img{transform:scale(1.06);filter:contrast(1.1) saturate(1.15);}
   .miami-gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.58) 0%,transparent 58%);}
@@ -754,15 +754,15 @@
     </div>
     <div class="miami-gallery-grid">
       <figure class="miami-gallery-item">
-        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1000&h=800&fit=crop&crop=center" alt="Daytime beach road in Miami" loading="lazy"/>
+        <img src="descarga.jpeg" alt="Daytime beach road in Miami" loading="lazy"/>
         <figcaption class="miami-gallery-note">Beach Drives</figcaption>
       </figure>
       <figure class="miami-gallery-item">
-        <img src="https://images.unsplash.com/photo-1517949908116-72169db9f3ea?w=1000&h=800&fit=crop&crop=center" alt="Miami beach palm trees during day" loading="lazy"/>
+        <img src="eb2bdd4684ef4db8d3ead7fda6aced28.jpg" alt="Miami beach palm trees during day" loading="lazy"/>
         <figcaption class="miami-gallery-note">Palm-Lined Streets</figcaption>
       </figure>
       <figure class="miami-gallery-item">
-        <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=1000&h=800&fit=crop&crop=center" alt="South Beach lifeguard tower with blue sky" loading="lazy"/>
+        <img src="descarga%20(1).jpeg" alt="South Beach lifeguard tower with blue sky" loading="lazy"/>
         <figcaption class="miami-gallery-note">Iconic Lifeguard Towers</figcaption>
       </figure>
       <figure class="miami-gallery-item">
@@ -770,7 +770,7 @@
         <figcaption class="miami-gallery-note">Coastline Views</figcaption>
       </figure>
       <figure class="miami-gallery-item">
-        <img src="https://images.unsplash.com/photo-1569701813229-33284b643e3c?w=1000&h=800&fit=crop&crop=center" alt="Miami city and ocean horizon on sunny day" loading="lazy"/>
+        <img src="descarga%20(2).jpeg" alt="Miami city and ocean horizon on sunny day" loading="lazy"/>
         <figcaption class="miami-gallery-note">Bay + Skyline</figcaption>
       </figure>
       <figure class="miami-gallery-item">
