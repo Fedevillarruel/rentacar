@@ -171,6 +171,11 @@
   .fi:hover{transform:translateY(-4px);border-color:rgba(230,57,70,.4);box-shadow:0 12px 32px rgba(0,0,0,.1);}
   .fi img{width:100%;height:100%;object-fit:cover;transition:.4s;}
   .fi:hover img{transform:scale(1.06);}
+  .fi .fi-nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:none;background:rgba(0,0,0,.48);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:.2s;}
+  .fi .fi-nav:hover{background:rgba(0,0,0,.7);}
+  .fi .fi-prev{left:10px;}
+  .fi .fi-next{right:10px;}
+  .fi .fi-counter{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.62);color:#fff;font-size:.67rem;font-weight:700;padding:3px 8px;border-radius:20px;z-index:3;letter-spacing:.2px;}
   .fov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;}
   .fov h4{font-size:.93rem;font-weight:700;margin-bottom:2px;color:#fff;}
   .fov span{font-size:.74rem;color:rgba(255,255,255,.6);}
@@ -347,6 +352,8 @@
     .bi{gap:16px;}
     .metrics-inner{grid-template-columns:1fr 1fr;}
     nav,section,.how,.fleet,.why,.testi,.areas,.faq,.cta-sec,.brands,.metrics{padding-left:4% !important;padding-right:4% !important;}
+    .fi .fi-nav{width:28px;height:28px;}
+    .fi .fi-counter{font-size:.62rem;}
   }
   /* MIAMI GALLERY */
   .miami-gallery{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;height:300px;overflow:hidden;gap:0;}
@@ -599,7 +606,7 @@
   </div>
   <div class="fgrid fgrid-fleet">
     <div class="fi" data-anim="up" data-cat="compact" onclick="toggleFleetCard(this)">
-      <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&h=400&fit=crop" alt="Compact"/>
+      <img src="autos/WhatsApp Image 2026-05-20 at 15.41.05.jpeg" alt="Compact"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fc">From $45/day</div>
         <h4 data-i18n="catc">Compact</h4>
@@ -607,7 +614,7 @@
       </div>
     </div>
     <div class="fi" data-anim="up" data-d="2" data-cat="sedan" onclick="toggleFleetCard(this)">
-      <img src="https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&h=400&fit=crop" alt="Sedan"/>
+      <img src="autos/WhatsApp Image 2026-05-20 at 15.41.02.jpeg" alt="Sedan"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fsd">From $45/day</div>
         <h4 data-i18n="catsd">Sedan</h4>
@@ -615,7 +622,7 @@
       </div>
     </div>
     <div class="fi" data-anim="up" data-d="3" data-cat="suv" onclick="toggleFleetCard(this)">
-      <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop" alt="SUV"/>
+      <img src="autos/WhatsApp Image 2026-05-20 at 15.40.45.jpeg" alt="SUV"/>
       <div class="fov">
         <div class="ffrom" data-i18n="fs">From $65/day</div>
         <h4 data-i18n="catsuv">SUV / Truck</h4>
@@ -623,7 +630,7 @@
       </div>
     </div>
     <div class="fi" data-anim="up" data-d="4" data-cat="minivan" onclick="toggleFleetCard(this)" style="border-color:var(--red);box-shadow:0 0 0 2px var(--red);">
-      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Minivan"/>
+      <img src="autos/WhatsApp Image 2026-05-20 at 15.40.57.jpeg" alt="Minivan"/>
       <div class="fov">
         <div class="ffrom" style="background:#f4a800;color:#000;font-weight:800;" data-i18n="fm">⭐ From $85/day</div>
         <h4 data-i18n="catmv">Minivan</h4>
@@ -1098,6 +1105,106 @@ function bookCar(name,price){
   window.open('https://wa.me/17867282882?text='+encodeURIComponent(msg),'_blank');
 }
 
+const FLEET_MEDIA={
+  compact:[
+    'autos/WhatsApp Image 2026-05-20 at 15.41.05.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.09.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.11.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.36.jpeg'
+  ],
+  sedan:[
+    'autos/WhatsApp Image 2026-05-20 at 15.41.02.jpeg'
+  ],
+  suv:[
+    'autos/WhatsApp Image 2026-05-20 at 15.40.45.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.46.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.48.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.51.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.53.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.55.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.40.58.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.00.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.03.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.14.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.17.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.19.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.20.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.21.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.22.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.23.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.24.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.26.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.28.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.33.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.34.jpeg'
+  ],
+  minivan:[
+    'autos/WhatsApp Image 2026-05-20 at 15.40.57.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.15.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.30.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.31.jpeg',
+    'autos/WhatsApp Image 2026-05-20 at 15.41.38.jpeg'
+  ]
+};
+const fleetIndex={compact:0,sedan:0,suv:0,minivan:0};
+
+function updateFleetCardImage(cat){
+  const card=document.querySelector(`.fgrid-fleet .fi[data-cat="${cat}"]`);
+  const images=FLEET_MEDIA[cat]||[];
+  if(!card||!images.length)return;
+  const img=card.querySelector('img');
+  const idx=((fleetIndex[cat]||0)%images.length+images.length)%images.length;
+  const src=images[idx];
+  if(img){
+    img.src=encodeURI(src);
+    img.loading='lazy';
+  }
+  const counter=card.querySelector('.fi-counter');
+  if(counter)counter.textContent=`${idx+1}/${images.length}`;
+}
+
+function stepFleetImage(cat,delta,e){
+  if(e){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  const total=(FLEET_MEDIA[cat]||[]).length;
+  if(total<=1)return;
+  fleetIndex[cat]=((fleetIndex[cat]||0)+delta+total)%total;
+  updateFleetCardImage(cat);
+}
+
+function initFleetMedia(){
+  document.querySelectorAll('.fgrid-fleet .fi').forEach(card=>{
+    const cat=card.dataset.cat;
+    const total=(FLEET_MEDIA[cat]||[]).length;
+    if(!cat||!total)return;
+    if(!card.querySelector('.fi-counter')){
+      const counter=document.createElement('span');
+      counter.className='fi-counter';
+      card.appendChild(counter);
+    }
+    if(total>1&&!card.querySelector('.fi-prev')){
+      const prev=document.createElement('button');
+      prev.className='fi-nav fi-prev';
+      prev.type='button';
+      prev.setAttribute('aria-label','Previous photo');
+      prev.innerHTML='&#10094;';
+      prev.addEventListener('click',ev=>stepFleetImage(cat,-1,ev));
+      card.appendChild(prev);
+
+      const next=document.createElement('button');
+      next.className='fi-nav fi-next';
+      next.type='button';
+      next.setAttribute('aria-label','Next photo');
+      next.innerHTML='&#10095;';
+      next.addEventListener('click',ev=>stepFleetImage(cat,1,ev));
+      card.appendChild(next);
+    }
+    updateFleetCardImage(cat);
+  });
+}
+
 const FLEET_DETAIL={
   compact:{pax:5,bags:2,models:'Toyota Corolla 2024 · Honda Civic 2024',feats:['A/C','Bluetooth','Backup Camera','USB Charging'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Compact+car.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+auto+Compacto.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
   sedan:{pax:5,bags:3,models:'Toyota Camry 2024 · Honda Accord 2024',feats:['A/C','Bluetooth','Backup Camera','USB Charging','Cruise Control'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Sedan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+Sed%C3%A1n.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
@@ -1172,8 +1279,9 @@ function initFleetCarousel(){
   }
 }
 initFleetCarousel();
+initFleetMedia();
 let _rTimer;
-window.addEventListener('resize',()=>{clearTimeout(_rTimer);_rTimer=setTimeout(initFleetCarousel,150);});
+window.addEventListener('resize',()=>{clearTimeout(_rTimer);_rTimer=setTimeout(()=>{initFleetCarousel();initFleetMedia();},150);});
 
 function tFaq(btn){
   const a=btn.nextElementSibling;
