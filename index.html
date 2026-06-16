@@ -29,10 +29,10 @@
   ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px;}
 
   /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:#fff;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:88px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:#fff;}
   nav.scrolled{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(0,0,0,.07);}
   .logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:-1.5px;display:flex;align-items:center;gap:8px;}
-  .logo-img{height:40px;width:auto;display:block;}
+  .logo-img{height:76px;width:auto;display:block;}
   .logo em{color:var(--red);font-style:normal;}
   .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
   .nav-links>li>a{font-size:.88rem;font-weight:500;color:var(--muted);transition:.2s;}
@@ -45,7 +45,7 @@
   .nav-cta:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:var(--sh-red),0 0 0 2px #fff,0 0 22px rgba(230,57,70,.65);}
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
   .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;transition:.3s;}
-  .mob-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;padding:24px 6%;flex-direction:column;gap:4px;z-index:999;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+  .mob-menu{display:none;position:fixed;top:88px;left:0;right:0;background:#fff;padding:24px 6%;flex-direction:column;gap:4px;z-index:999;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);}
   .mob-menu.open{display:flex;}
   .mob-menu a{font-size:.95rem;font-weight:600;padding:12px 0;border-bottom:1px solid var(--border);color:var(--muted);}
   .mob-lang{display:flex;gap:8px;padding:12px 0;border-bottom:1px solid var(--border);}
@@ -365,7 +365,7 @@
     .wgrid,.tgrid{grid-template-columns:1fr;}
     .fgrid-fleet,.fgrid{grid-template-columns:1fr 1fr;}
     .alist{grid-template-columns:1fr 1fr;}
-    .hero{padding-top:86px;}
+    .hero{padding-top:104px;}
     .hero-btns{flex-direction:column;}
     .cta-btns{flex-direction:column;align-items:center;}
     .bi{gap:16px;}
@@ -378,6 +378,9 @@
     .miami-shot{min-height:220px;}
     .miami-gallery-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:4px;}
     .miami-gallery-item{min-width:78vw;aspect-ratio:5/4;scroll-snap-align:start;}
+    nav{height:78px;}
+    .mob-menu{top:78px;}
+    .logo-img{height:66px;}
   }
   /* MIAMI GALLERY */
   .miami-gallery{padding:80px 6%;background:#f7f7f7;}
@@ -1328,14 +1331,44 @@ function initFleetMedia(){
 }
 
 const FLEET_DETAIL={
-  compact:{pax:4,bags:2,models:'Kia Soul · Jeep Wrangler · Hyundai Kona',feats:['A/C','Bluetooth','Backup Camera','2 carry-on','Designated drivers included'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Compact+car.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+auto+Compacto.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
-  sedan:{pax:5,bags:2,models:'Audi A3 · BMW Serie 3 · Hyundai Elantra · VW Jetta · Toyota Corolla',feats:['A/C','Bluetooth','Backup Camera','3 carry-on','Designated drivers included'],price:'$45',wa:'Hi!+I\'m+interested+in+a+Sedan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+Sed%C3%A1n.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
-  suv:{pax:5,bags:3,models:'Nissan Murano · Kia Sportage · Chevrolet Equinox · BMW X3 · Cadillac XT5 · Traverse · Hyundai Tucson · BMW X5 · Nissan Rogue · VW Taos',feats:['A/C','Bluetooth','AWD option','Backup Camera','3 carry-on'],price:'$65',wa:'Hi!+I\'m+interested+in+an+SUV+%2F+Truck.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+SUV+%2F+Camioneta.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'},
-  minivan:{pax:7,bags:4,models:'Kia Sedona · Honda Odyssey · Chrysler Pacifica',feats:['A/C','Bluetooth','3rd Row Seating','Sliding Doors','2-3 carry-on'],price:'$85',wa:'Hi!+I\'m+interested+in+a+Minivan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+Minivan.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'}
+  compact:{
+    pax:4,bags:2,
+    models:'Kia Soul · Jeep Wrangler · Hyundai Kona',
+    models_es:'Kia Soul · Jeep Wrangler · Hyundai Kona',
+    feats:['A/C','Bluetooth','Backup Camera','2 carry-on','Designated drivers included'],
+    feats_es:['A/C','Bluetooth','Cámara de retroceso','2 carry-on','Conductores designados incluidos'],
+    price:'$45',wa:'Hi!+I\'m+interested+in+a+Compact+car.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+auto+Compacto.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'
+  },
+  sedan:{
+    pax:5,bags:2,
+    models:'Audi A3 · BMW 3 Series · Hyundai Elantra · VW Jetta · Toyota Corolla',
+    models_es:'Audi A3 · BMW Serie 3 · Hyundai Elantra · VW Jetta · Toyota Corolla',
+    feats:['A/C','Bluetooth','Backup Camera','3 carry-on','Designated drivers included'],
+    feats_es:['A/C','Bluetooth','Cámara de retroceso','3 carry-on','Conductores designados incluidos'],
+    price:'$45',wa:'Hi!+I\'m+interested+in+a+Sedan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+un+Sed%C3%A1n.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'
+  },
+  suv:{
+    pax:5,bags:3,
+    models:'Nissan Murano · Kia Sportage · Chevrolet Equinox · BMW X3 · Cadillac XT5 · Traverse · Hyundai Tucson · BMW X5 · Nissan Rogue · VW Taos',
+    models_es:'Nissan Murano · Kia Sportage · Chevrolet Equinox · BMW X3 · Cadillac XT5 · Traverse · Hyundai Tucson · BMW X5 · Nissan Rogue · VW Taos',
+    feats:['A/C','Bluetooth','AWD option','Backup Camera','3 carry-on'],
+    feats_es:['A/C','Bluetooth','Opción AWD','Cámara de retroceso','3 carry-on'],
+    price:'$65',wa:'Hi!+I\'m+interested+in+an+SUV+%2F+Truck.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+SUV+%2F+Camioneta.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'
+  },
+  minivan:{
+    pax:7,bags:4,
+    models:'Kia Sedona · Honda Odyssey · Chrysler Pacifica',
+    models_es:'Kia Sedona · Honda Odyssey · Chrysler Pacifica',
+    feats:['A/C','Bluetooth','3rd Row Seating','Sliding Doors','2-3 carry-on'],
+    feats_es:['A/C','Bluetooth','Tercera fila de asientos','Puertas corredizas','2-3 carry-on'],
+    price:'$85',wa:'Hi!+I\'m+interested+in+a+Minivan.+Can+I+get+a+quote%3F',waes:'Hola!+Me+interesa+una+Minivan.+%C2%BFPueden+darme+una+cotizaci%C3%B3n%3F'
+  }
 };
 function buildFleetPanel(cat,detail){
   const d=FLEET_DETAIL[cat];
   const isEs=document.documentElement.lang==='es';
+  const modelsText=isEs?(d.models_es||d.models):d.models;
+  const featList=isEs?(d.feats_es||d.feats):d.feats;
   const paxLbl=isEs?'Pasajeros':'Passengers';
   const bagsLbl=isEs?'Maletas':'Bags';
   const fromLbl=isEs?'Desde':'From';
@@ -1350,8 +1383,8 @@ function buildFleetPanel(cat,detail){
       <div class="fi-spec"><i class="fa-solid fa-snowflake"></i>A/C</div>
       <div class="fi-spec"><i class="fa-solid fa-tag"></i>${fromLbl} ${d.price}/${dayLbl}</div>
     </div>
-    <div class="fi-models"><i class="fa-solid fa-car" style="color:var(--muted2);margin-right:6px;"></i><strong>${modelsLbl}:</strong> ${d.models}</div>
-    <div class="fi-feats">${d.feats.map(f=>`<span class="fi-feat"><i class="fa-solid fa-check" style="color:var(--red);margin-right:4px;font-size:.65rem;"></i>${f}</span>`).join('')}</div>
+    <div class="fi-models"><i class="fa-solid fa-car" style="color:var(--muted2);margin-right:6px;"></i><strong>${modelsLbl}:</strong> ${modelsText}</div>
+    <div class="fi-feats">${featList.map(f=>`<span class="fi-feat"><i class="fa-solid fa-check" style="color:var(--red);margin-right:4px;font-size:.65rem;"></i>${f}</span>`).join('')}</div>
     <a href="https://wa.me/17867282882?text=${waLink}" class="fi-detail-cta wa-link"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i>${ctaLbl}</a>
   </div>`;
 }
