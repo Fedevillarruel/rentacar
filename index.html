@@ -19,8 +19,9 @@
     --sh:0 4px 24px rgba(0,0,0,.08); --sh-red:0 8px 28px rgba(230,57,70,.3);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;}
+  section,footer{overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
   ::selection{background:var(--red);color:#fff;}
@@ -376,11 +377,17 @@
     .miami-dayline,.miami-gallery{padding-top:56px;padding-bottom:56px;}
     .miami-day-grid{grid-template-columns:1fr;gap:12px;}
     .miami-shot{min-height:220px;}
-    .miami-gallery-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:4px;}
-    .miami-gallery-item{min-width:78vw;aspect-ratio:5/4;scroll-snap-align:start;}
+    .fleet-hdr{align-items:flex-start;}
+    .fleet-hdr .stitle{font-size:clamp(1.55rem,7vw,2rem);line-height:1.15;word-break:break-word;}
+    .miami-gallery-grid{display:grid;grid-template-columns:1fr;gap:12px;overflow:visible;scroll-snap-type:none;padding-bottom:0;}
+    .miami-gallery-item{min-width:0;aspect-ratio:4/3;scroll-snap-align:none;}
+    .miami-gallery-note{left:10px;right:10px;bottom:10px;font-size:.74rem;line-height:1.35;white-space:normal;}
     nav{height:78px;}
     .mob-menu{top:78px;}
     .logo-img{height:66px;}
+    .wa-float{bottom:14px;right:14px;}
+    .wa-circ{width:50px;height:50px;font-size:1.45rem;}
+    .wa-tip{font-size:.72rem;padding:6px 10px;}
   }
   /* MIAMI GALLERY */
   .miami-gallery{padding:80px 6%;background:#f7f7f7;}
@@ -391,6 +398,12 @@
   .miami-gallery-item:hover img{transform:scale(1.06);filter:contrast(1.1) saturate(1.15);}
   .miami-gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.58) 0%,transparent 58%);}
   .miami-gallery-note{position:absolute;left:14px;bottom:12px;z-index:2;font-size:.78rem;font-weight:700;letter-spacing:.2px;color:#fff;}
+
+  @media(max-width:600px){
+    .miami-gallery-grid{display:grid !important;grid-template-columns:1fr !important;gap:12px;overflow:visible;scroll-snap-type:none;padding-bottom:0;}
+    .miami-gallery-item{min-width:0;aspect-ratio:4/3;scroll-snap-align:none;}
+    .miami-gallery-note{left:10px;right:10px;bottom:10px;font-size:.74rem;line-height:1.35;white-space:normal;}
+  }
 
   /* COOKIE BANNER */
   #cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:0 20px 20px;pointer-events:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;}
@@ -916,7 +929,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="fgrid" style="display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px;max-width:1260px;margin-left:auto;margin-right:auto;">
+  <div class="fgrid">
     <div class="fbrand">
       <a href="#" style="margin-bottom:16px;display:inline-block;text-decoration:none;">
         <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.45rem;color:#fff;letter-spacing:-1px;line-height:1.1;">RIDE &amp; GO</div>
